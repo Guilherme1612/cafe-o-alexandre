@@ -68,5 +68,6 @@
   },
   "graphify": {
     "enabled": false
-  }
+  },
+  "mode": "yolo"
 }
