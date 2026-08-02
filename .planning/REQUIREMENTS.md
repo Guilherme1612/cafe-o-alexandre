@@ -38,7 +38,7 @@ Requirements for the initial single-page release. Every requirement must preserv
 - [x] **UX-02**: The page uses semantic headings and landmarks, strong text contrast, visible keyboard focus, descriptive labels, and comfortable touch targets.
 - [x] **UX-03**: The visual system uses burgundy red, charcoal black, warm gold, and cream in a warm, local, elegant composition with restrained motion.
 - [x] **UX-04**: The footer repeats the verified address and phone number in a simple, accessible layout.
-- [ ] **UX-05**: The page remains useful with JavaScript disabled and with gallery images unavailable.
+- [x] **UX-05**: The page remains useful with JavaScript disabled and with gallery images unavailable.
 
 ## v2 Requirements
 
@@ -110,7 +110,7 @@ Updated by roadmap creation.
 | UX-02 | Phase 2 | Complete |
 | UX-03 | Phase 1 | Complete |
 | UX-04 | Phase 2 | Complete |
-| UX-05 | Phase 4 | Pending |
+| UX-05 | Phase 4 | Complete |
 
 ---
 *Requirements are hypotheses until shipped and validated.*
