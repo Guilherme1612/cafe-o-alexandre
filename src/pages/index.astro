@@ -1,6 +1,12 @@
 ---
 import { cafe } from '../data/cafe';
 import '../styles/global.css';
+
+const isVerified = (value: string) => value.length > 0 && !value.startsWith('[');
+const phoneHref = isVerified(cafe.phone) ? `tel:${cafe.phone.replace(/\D/g, '')}` : undefined;
+const whatsappHref = isVerified(cafe.whatsapp) ? `https://wa.me/${cafe.whatsapp.replace(/\D/g, '')}` : undefined;
+const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map : undefined;
+const socialHref = isVerified(cafe.social) && cafe.social.startsWith('http') ? cafe.social : undefined;
 ---
 
 <!doctype html>
@@ -19,9 +25,25 @@ import '../styles/global.css';
         <p class="eyebrow">Café information</p>
         <h1 class="display-title" id="page-title">{cafe.name}</h1>
         <p class="hero__welcome">{cafe.welcome}</p>
+        <p class="hero__address">
+          <span class="field-label">Find us</span>
+          <span>{cafe.address}</span>
+        </p>
+        <div class="action-group" aria-label="Contact and directions">
+          {phoneHref ? (
+            <a class="action action--primary" href={phoneHref}>Call Us</a>
+          ) : (
+            <span class="action action--unavailable" role="status">Call Us · Phone number not yet available</span>
+          )}
+          {mapHref ? (
+            <a class="action action--secondary" href={mapHref} target="_blank" rel="noreferrer">Get Directions</a>
+          ) : (
+            <span class="action action--unavailable" role="status">Get Directions · Link not yet available</span>
+          )}
+        </div>
         <p class="hero__next-step">
           <span class="field-label">Next step</span>
-          <span>{cafe.phoneFallback}</span>
+          <span>{phoneHref ? 'Call us to plan your visit.' : cafe.phoneFallback}</span>
         </p>
       </div>
     </header>
@@ -33,39 +55,64 @@ import '../styles/global.css';
           <p class="measure">{cafe.emptyState.body}</p>
         </section>
 
+        <section class="section" aria-labelledby="about-title">
+          <h2 id="about-title">About Us</h2>
+          <p class="measure placeholder">{cafe.description}</p>
+        </section>
+
+        <section class="section" aria-labelledby="offerings-title">
+          <h2 id="offerings-title">What we offer</h2>
+          <p class="measure placeholder">{cafe.offerings}</p>
+        </section>
+
         <section class="section" aria-labelledby="details-title">
-          <h2 id="details-title">Café details</h2>
+          <h2 id="details-title">Practical information</h2>
           <dl class="details-list">
             <div class="detail">
               <dt>Address</dt>
-              <dd class="placeholder">{cafe.address}</dd>
+              <dd>{cafe.address}</dd>
             </div>
             <div class="detail">
               <dt>Phone</dt>
-              <dd class="placeholder">{cafe.phone}</dd>
+              <dd>
+                {phoneHref ? <a href={phoneHref}>{cafe.phone}</a> : <span class="placeholder">{cafe.phone}</span>}
+              </dd>
             </div>
             <div class="detail">
               <dt>WhatsApp</dt>
-              <dd class="placeholder">{cafe.whatsapp}</dd>
+              <dd>
+                {whatsappHref ? (
+                  <a href={whatsappHref} target="_blank" rel="noreferrer">Message us on WhatsApp</a>
+                ) : (
+                  <span class="placeholder">{cafe.whatsapp}</span>
+                )}
+              </dd>
             </div>
             <div class="detail">
               <dt>Opening hours</dt>
               <dd class="placeholder">{cafe.hours}</dd>
             </div>
             <div class="detail">
-              <dt>Social links</dt>
-              <dd class="placeholder">{cafe.social}</dd>
+              <dt>Social media</dt>
+              <dd>
+                {socialHref ? (
+                  <a href={socialHref} target="_blank" rel="noreferrer">Follow us online</a>
+                ) : (
+                  <span class="placeholder">{cafe.social}</span>
+                )}
+              </dd>
             </div>
             <div class="detail">
               <dt>Directions</dt>
-              <dd class="placeholder">{cafe.map}</dd>
+              <dd>
+                {mapHref ? (
+                  <a href={mapHref} target="_blank" rel="noreferrer">Open Google Maps</a>
+                ) : (
+                  <span class="placeholder">{cafe.map}</span>
+                )}
+              </dd>
             </div>
           </dl>
-        </section>
-
-        <section class="section" aria-labelledby="about-title">
-          <h2 id="about-title">About the café</h2>
-          <p class="placeholder measure">{cafe.description}</p>
         </section>
 
         <section class="section" aria-labelledby="gallery-title">
@@ -78,6 +125,10 @@ import '../styles/global.css';
     <footer class="site-footer">
       <div class="shell">
         <p class="site-footer__name">{cafe.name}</p>
+        <p class="site-footer__contact">
+          <span>{cafe.address}</span>
+          <span>{cafe.phone}</span>
+        </p>
         <p class="site-footer__note">Verified details will be added when they are provided.</p>
       </div>
     </footer>

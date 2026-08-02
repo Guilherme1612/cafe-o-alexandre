@@ -110,6 +110,49 @@ button:focus-visible {
   margin: var(--space-md) 0 0;
 }
 
+.hero__address {
+  display: grid;
+  gap: var(--space-xs);
+  max-inline-size: 38ch;
+  margin: var(--space-xl) 0 0;
+}
+
+.action-group {
+  display: grid;
+  gap: var(--space-sm);
+  max-inline-size: 38ch;
+  margin-block-start: var(--space-lg);
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 48px;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+.action--primary {
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+}
+
+.action--secondary {
+  background: transparent;
+  color: var(--color-cream);
+}
+
+.action--unavailable {
+  border-color: rgb(247 240 228 / 45%);
+  color: rgb(247 240 228 / 80%);
+  overflow-wrap: anywhere;
+}
+
 .hero__next-step {
   display: grid;
   gap: var(--space-xs);
@@ -168,6 +211,12 @@ dt {
   border-radius: var(--radius);
 }
 
+.detail a {
+  display: inline-flex;
+  align-items: center;
+  overflow-wrap: anywhere;
+}
+
 dd {
   margin: 0;
 }
@@ -184,6 +233,7 @@ dd {
 }
 
 .site-footer__name,
+.site-footer__contact,
 .site-footer__note {
   max-inline-size: var(--copy-width);
   margin: 0;
@@ -193,6 +243,13 @@ dd {
   font-family: var(--font-display);
   font-size: var(--text-heading);
   font-weight: 600;
+}
+
+.site-footer__contact {
+  display: grid;
+  gap: var(--space-xs);
+  margin-block-start: var(--space-sm);
+  overflow-wrap: anywhere;
 }
 
 .site-footer__note {
@@ -212,6 +269,11 @@ dd {
   .details-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-lg);
+  }
+
+  .action-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-inline-size: 38rem;
   }
 }
 
