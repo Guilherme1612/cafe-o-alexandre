@@ -1,0 +1,88 @@
+---
+import { cafe } from '../data/cafe';
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{cafe.name}</title>
+    <meta
+      name="description"
+      content="{cafe.name} information will be updated with verified café details."
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="hero" aria-labelledby="page-title">
+      <div class="shell hero__inner">
+        <p class="eyebrow">Café information</p>
+        <h1 class="display-title" id="page-title">{cafe.name}</h1>
+        <p class="hero__welcome">{cafe.welcome}</p>
+        <p class="hero__next-step">
+          <span class="field-label">Next step</span>
+          <span>{cafe.phoneFallback}</span>
+        </p>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <div class="shell">
+        <section class="section empty-state" aria-labelledby="empty-state-title">
+          <h2 id="empty-state-title">{cafe.emptyState.heading}</h2>
+          <p class="measure">{cafe.emptyState.body}</p>
+        </section>
+
+        <section class="section" aria-labelledby="details-title">
+          <h2 id="details-title">Café details</h2>
+          <dl class="details-list">
+            <div class="detail">
+              <dt>Address</dt>
+              <dd class="placeholder">{cafe.address}</dd>
+            </div>
+            <div class="detail">
+              <dt>Phone</dt>
+              <dd class="placeholder">{cafe.phone}</dd>
+            </div>
+            <div class="detail">
+              <dt>WhatsApp</dt>
+              <dd class="placeholder">{cafe.whatsapp}</dd>
+            </div>
+            <div class="detail">
+              <dt>Opening hours</dt>
+              <dd class="placeholder">{cafe.hours}</dd>
+            </div>
+            <div class="detail">
+              <dt>Social links</dt>
+              <dd class="placeholder">{cafe.social}</dd>
+            </div>
+            <div class="detail">
+              <dt>Directions</dt>
+              <dd class="placeholder">{cafe.map}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="section" aria-labelledby="about-title">
+          <h2 id="about-title">About the café</h2>
+          <p class="placeholder measure">{cafe.description}</p>
+        </section>
+
+        <section class="section" aria-labelledby="gallery-title">
+          <h2 id="gallery-title">Café images</h2>
+          <p class="placeholder measure">{cafe.images}</p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell">
+        <p class="site-footer__name">{cafe.name}</p>
+        <p class="site-footer__note">Verified details will be added when they are provided.</p>
+      </div>
+    </footer>
+  </body>
+</html>
