@@ -3,8 +3,10 @@ import { cafe } from '../data/cafe';
 import '../styles/global.css';
 
 const isVerified = (value: string) => value.length > 0 && !value.startsWith('[');
-const phoneHref = isVerified(cafe.phone) ? `tel:${cafe.phone.replace(/\D/g, '')}` : undefined;
-const whatsappHref = isVerified(cafe.whatsapp) ? `https://wa.me/${cafe.whatsapp.replace(/\D/g, '')}` : undefined;
+const phoneDigits = cafe.phone.replace(/\D/g, '');
+const phoneHref = isVerified(cafe.phone) && phoneDigits ? `tel:${phoneDigits}` : undefined;
+const whatsappDigits = cafe.whatsapp.replace(/\D/g, '');
+const whatsappHref = isVerified(cafe.whatsapp) && whatsappDigits ? `https://wa.me/${whatsappDigits}` : undefined;
 const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map : undefined;
 const socialHref = isVerified(cafe.social) && cafe.social.startsWith('http') ? cafe.social : undefined;
 ---
@@ -15,142 +17,154 @@ const socialHref = isVerified(cafe.social) && cafe.social.startsWith('http') ? c
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{cafe.name}</title>
-    <meta name="description" content={cafe.name} />
+    <meta name="description" content={`${cafe.name} — call ${cafe.phone}`} />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <header class="hero" aria-labelledby="page-title">
-      <div class="shell hero__inner">
-        <p class="eyebrow">Café information</p>
-        <h1 class="display-title" id="page-title">{cafe.name}</h1>
-        <p class="hero__welcome">{cafe.welcome}</p>
-        <p class="hero__address">
-          <span class="field-label">Find us</span>
-          <span>{cafe.address}</span>
-        </p>
-        <div class="action-group" aria-label="Contact and directions">
-          {phoneHref ? (
-            <a class="action action--primary" href={phoneHref}>Call Us</a>
-          ) : (
-            <span class="action action--unavailable" role="status">Call Us · Phone number not yet available</span>
-          )}
-          {mapHref ? (
-            <a class="action action--secondary" href={mapHref} target="_blank" rel="noreferrer">Get Directions</a>
-          ) : (
-            <span class="action action--unavailable" role="status">Get Directions · Link not yet available</span>
-          )}
+    <header class="site-header">
+      <nav class="site-nav shell" aria-label="Primary navigation">
+        <a class="wordmark" href="#main-content" aria-label={`${cafe.name} home`}>
+          <span class="wordmark__mark" aria-hidden="true">A</span>
+          <span>{cafe.name}</span>
+        </a>
+        <div class="site-nav__links">
+          <a href="#visit">Visit</a>
+          <a href="#about">About</a>
+          {phoneHref && <a class="site-nav__phone" href={phoneHref}>Call {cafe.phone}</a>}
         </div>
-        <p class="hero__next-step">
-          <span class="field-label">Next step</span>
-          <span>{phoneHref ? 'Call us to plan your visit.' : cafe.phoneFallback}</span>
-        </p>
-      </div>
+      </nav>
     </header>
 
     <main id="main-content">
-      <div class="shell">
-        <section class="section empty-state" aria-labelledby="empty-state-title">
-          <h2 id="empty-state-title">{cafe.emptyState.heading}</h2>
-          <p class="measure">{cafe.emptyState.body}</p>
-        </section>
-
-        <section class="section" aria-labelledby="about-title">
-          <h2 id="about-title">About Us</h2>
-          <p class="measure placeholder">{cafe.description}</p>
-        </section>
-
-        <section class="section" aria-labelledby="offerings-title">
-          <h2 id="offerings-title">What we offer</h2>
-          <p class="measure placeholder">{cafe.offerings}</p>
-        </section>
-
-        <section class="section" aria-labelledby="details-title">
-          <h2 id="details-title">Practical information</h2>
-          <dl class="details-list">
-            <div class="detail">
-              <dt>Address</dt>
-              <dd>{cafe.address}</dd>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="shell hero__grid">
+          <div class="hero__copy">
+            <p class="hero__kicker">Café o Alexandre</p>
+            <h1 id="page-title"><span>Café o</span> <em>Alexandre</em></h1>
+            <p class="hero__welcome">{cafe.welcome}</p>
+            <div class="hero__actions" aria-label="Contact actions">
+              {phoneHref ? (
+                <a class="action action--primary" href={phoneHref}>Call {cafe.phone}</a>
+              ) : (
+                <span class="action action--unavailable" role="status">Call unavailable</span>
+              )}
+              {mapHref ? (
+                <a class="action action--secondary" href={mapHref} target="_blank" rel="noreferrer">Get directions</a>
+              ) : (
+                <span class="action action--unavailable" role="status">Directions coming soon</span>
+              )}
             </div>
-            <div class="detail">
+            <p class="hero__address">
+              <span class="label">Find us</span>
+              <span>{cafe.address}</span>
+            </p>
+          </div>
+
+          <div class="hero-art" aria-hidden="true">
+            <div class="hero-art__stamp">CAFÉ<br />O<br />ALEXANDRE</div>
+            <div class="hero-art__ring hero-art__ring--outer"></div>
+            <div class="hero-art__ring hero-art__ring--inner"></div>
+            <div class="hero-art__block"><span>CALL<br />927 605 689</span></div>
+            <p class="hero-art__word">ALEXANDRE</p>
+            <p class="hero-art__number">{cafe.phone}</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--about" id="about" aria-labelledby="about-title">
+        <div class="shell section__inner section__inner--about">
+          <div class="section-heading">
+            <p class="section-heading__index">About the café</p>
+            <h2 id="about-title">About Us</h2>
+          </div>
+          <div class="section-copy">
+            <p class="lead">{cafe.description}</p>
+            <div class="offer-line">
+              <span class="label">What we offer</span>
+              <span class="placeholder">{cafe.offerings}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--visit" id="visit" aria-labelledby="visit-title">
+        <div class="shell section__inner">
+          <div class="section-heading">
+            <p class="section-heading__index">Visit</p>
+            <h2 id="visit-title">Plan your visit</h2>
+          </div>
+
+          <dl class="info-list">
+            <div class="info-row info-row--featured">
               <dt>Phone</dt>
-              <dd>
-                {phoneHref ? <a href={phoneHref}>{cafe.phone}</a> : <span class="placeholder">{cafe.phone}</span>}
-              </dd>
+              <dd>{phoneHref ? <a href={phoneHref}>{cafe.phone}</a> : <span class="placeholder">{cafe.phone}</span>}</dd>
             </div>
-            <div class="detail">
-              <dt>WhatsApp</dt>
-              <dd>
-                {whatsappHref ? (
-                  <a href={whatsappHref} target="_blank" rel="noreferrer">Message us on WhatsApp</a>
-                ) : (
-                  <span class="placeholder">{cafe.whatsapp}</span>
-                )}
-              </dd>
+            <div class="info-row">
+              <dt>Address</dt>
+              <dd class="placeholder">{cafe.address}</dd>
             </div>
-            <div class="detail">
+            <div class="info-row">
               <dt>Opening hours</dt>
               <dd class="placeholder">{cafe.hours}</dd>
             </div>
-            <div class="detail">
-              <dt>Social media</dt>
+            <div class="info-row">
+              <dt>WhatsApp</dt>
               <dd>
-                {socialHref ? (
-                  <a href={socialHref} target="_blank" rel="noreferrer">Follow us online</a>
-                ) : (
-                  <span class="placeholder">{cafe.social}</span>
-                )}
+                {whatsappHref ? <a href={whatsappHref} target="_blank" rel="noreferrer">Message on WhatsApp</a> : <span class="placeholder">{cafe.whatsapp}</span>}
               </dd>
             </div>
-            <div class="detail">
+            <div class="info-row">
+              <dt>Social media</dt>
+              <dd>
+                {socialHref ? <a href={socialHref} target="_blank" rel="noreferrer">Follow the café</a> : <span class="placeholder">{cafe.social}</span>}
+              </dd>
+            </div>
+            <div class="info-row">
               <dt>Directions</dt>
               <dd>
-                {mapHref ? (
-                  <a href={mapHref} target="_blank" rel="noreferrer">Open Google Maps</a>
-                ) : (
-                  <span class="placeholder">{cafe.map}</span>
-                )}
+                {mapHref ? <a href={mapHref} target="_blank" rel="noreferrer">Open Google Maps</a> : <span class="placeholder">{cafe.map}</span>}
               </dd>
             </div>
           </dl>
-        </section>
+        </div>
+      </section>
 
-        <section class="section" aria-labelledby="gallery-title">
-          <h2 id="gallery-title">Café images</h2>
+      <section class="section section--gallery" aria-labelledby="gallery-title">
+        <div class="shell section__inner">
+          <div class="section-heading">
+            <p class="section-heading__index">Gallery</p>
+            <h2 id="gallery-title">A look inside</h2>
+          </div>
           {cafe.gallery.length === 0 ? (
             <div class="gallery-empty" role="status">
-              <h3>Photos coming soon</h3>
-              <p>Photos of the café will appear here once they are supplied.</p>
+              <div class="gallery-empty__mark" aria-hidden="true">✦</div>
+              <div>
+                <h3>Photos coming soon</h3>
+                <p>Photos of the café will appear here once they are supplied.</p>
+              </div>
             </div>
           ) : (
             <div class="gallery-grid">
               {cafe.gallery.map((image) => (
                 <figure class="gallery-card">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" decoding="async" />
                   <figcaption>{image.caption}</figcaption>
                 </figure>
               ))}
             </div>
           )}
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
-      <div class="shell">
-        <p class="site-footer__name">{cafe.name}</p>
-        <p class="site-footer__contact">
-          <span>{cafe.address}</span>
-          <span>{cafe.phone}</span>
-        </p>
-        <p class="site-footer__note">Verified details will be added when they are provided.</p>
+      <div class="shell site-footer__inner">
+        <div>
+          <p class="site-footer__eyebrow">Café o Alexandre</p>
+          <p class="site-footer__note">Verified details will be added when supplied.</p>
+        </div>
+        {phoneHref && <a class="footer-phone" href={phoneHref}>{cafe.phone}</a>}
       </div>
     </footer>
   </body>

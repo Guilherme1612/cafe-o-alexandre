@@ -12,7 +12,6 @@ const source = await readFile(sourcePath, 'utf8');
 
 const placeholders = {
   address: '[FULL ADDRESS]',
-  phone: '[PHONE NUMBER]',
   whatsapp: '[WHATSAPP NUMBER]',
   hours: '[OPENING HOURS]',
   social: '[SOCIAL LINKS]',
@@ -39,15 +38,11 @@ test('all unknown café fields stay explicit, non-empty placeholders', () => {
   }
 });
 
-test('approved identity and empty-state copy remain source-backed', () => {
+test('verified identity and welcome copy remain source-backed', () => {
   assert.match(source, /name:\s*['"]Café o Alexandre['"]/);
   assert.match(source, /welcome:\s*['"]Welcome to Café o Alexandre\.["']/);
-  assert.match(source, /phoneFallback:\s*['"]Phone number not yet available['"]/);
-  assert.match(source, /heading:\s*['"]Café details coming soon['"]/);
-  assert.match(
-    source,
-    /body:\s*['"]Verified café information will appear here once it is provided\.["']/
-  );
+  assert.match(source, /phone:\s*['"]927 605 689['"]/);
+  assert.doesNotMatch(source, /Phone number not yet available|Café details coming soon/);
 });
 
 test('content source contains no actionable destination schemes', () => {

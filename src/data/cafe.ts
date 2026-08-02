@@ -9,11 +9,6 @@ export type GalleryImage = Readonly<{
 type CafeContent = Readonly<{
   name: string;
   welcome: string;
-  phoneFallback: string;
-  emptyState: Readonly<{
-    heading: string;
-    body: string;
-  }>;
   address: string;
   phone: string;
   whatsapp: string;
@@ -29,13 +24,8 @@ type CafeContent = Readonly<{
 export const cafe = {
   name: 'Café o Alexandre',
   welcome: 'Welcome to Café o Alexandre.',
-  phoneFallback: 'Phone number not yet available',
-  emptyState: {
-    heading: 'Café details coming soon',
-    body: 'Verified café information will appear here once it is provided.'
-  },
   address: '[FULL ADDRESS]',
-  phone: '[PHONE NUMBER]',
+  phone: '927 605 689',
   whatsapp: '[WHATSAPP NUMBER]',
   hours: '[OPENING HOURS]',
   social: '[SOCIAL LINKS]',
