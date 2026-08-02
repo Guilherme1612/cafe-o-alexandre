@@ -14,20 +14,15 @@ A visitor can quickly find accurate café information and take the next action�
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ Visitor identity, welcome, address/actions, practical information, and footer — v1.0
+- ✓ Native contact/directions paths with explicit placeholders until verified — v1.0
+- ✓ About Us, offer, and content-truth boundary — v1.0
+- ✓ Responsive gallery contract and sponsor-image exclusion — v1.0
+- ✓ Mobile-first accessibility, resilient no-JavaScript fallback, and static launch gate — v1.0
 
 ### Active
 
-- [ ] Present the café name, welcome message, full address, and prominent call and directions actions in the hero.
-- [ ] Explain what the café is and offers in a short About Us section using café-provided copy.
-- [ ] Show address, phone, WhatsApp, opening hours, and social links in a practical information section.
-- [ ] Make phone and WhatsApp details actionable on mobile with accessible labels.
-- [ ] Provide an embedded map or clear Google Maps link for directions.
-- [ ] Show a small gallery using café-provided photos.
-- [ ] Repeat the address and phone number in a simple footer.
-- [ ] Use large readable text, strong contrast, generous spacing, and a responsive mobile-first layout.
-- [ ] Use an elegant burgundy, charcoal, warm-gold, and cream visual palette inspired by the supplied image without copying its layout or sponsor branding.
-- [ ] Keep all unavailable business details visibly marked as placeholders until verified information is supplied.
+(None — v1.0 scope shipped; next milestone is not defined)
 
 ### Out of Scope
 
@@ -66,13 +61,21 @@ The following source content is still missing and must remain explicit placehold
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Build a focused single page | Visitors need a few practical answers and actions, not a complex site | — Pending |
-| Prioritize mobile contact and directions actions | These are the most likely high-intent visitor tasks | — Pending |
-| Use the reference only for mood and palette | Sponsor branding and advertisement layout were explicitly excluded | — Pending |
-| Preserve placeholders for every unverified fact | Incorrect business information is worse than visibly incomplete content | — Pending |
-| Keep motion restrained | The desired experience is warm and elegant, not distracting | — Pending |
+| Build a focused single page | Visitors need a few practical answers and actions, not a complex site | ✓ Good — v1.0 |
+| Prioritize mobile contact and directions actions | These are the most likely high-intent visitor tasks | ✓ Good — v1.0 |
+| Use the reference only for mood and palette | Sponsor branding and advertisement layout were explicitly excluded | ✓ Good — v1.0 |
+| Preserve placeholders for every unverified fact | Incorrect business information is worse than visibly incomplete content | ✓ Good — v1.0 |
+| Keep motion restrained | The desired experience is warm and elegant, not distracting | ✓ Good — v1.0 |
 
 ## Evolution
+
+## Current State
+
+v1.0 is implemented as a static Astro site with a single semantic page, local CSS, native contact/directions branches, a placeholder-safe gallery contract, and a dependency-free launch gate. The page builds to `dist/` and passes 9 Node tests plus responsive browser smoke. Café facts and photos remain owner-input placeholders by design.
+
+## Next Milestone Goals
+
+No next milestone has been defined. The next safe action is owner content handoff and static hosting setup; optional ENH-01..05 work should be scoped separately after the café verifies its facts and assets.
 
 This document evolves at phase transitions and milestone boundaries.
 
@@ -90,4 +93,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-08-02 after initialization*
+*Last updated: 2026-08-02 after v1.0 milestone*
