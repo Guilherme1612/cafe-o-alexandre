@@ -28,9 +28,9 @@ Requirements for the initial single-page release. Every requirement must preserv
 
 ### Gallery and Visual Content
 
-- [ ] **GALLERY-01**: Visitor can view a small responsive gallery made only from café-provided images.
-- [ ] **GALLERY-02**: Gallery images include meaningful alt text, stable dimensions, and loading behavior that avoids avoidable layout shifts.
-- [ ] **GALLERY-03**: Sponsor branding, sponsor logos, advertisement layout, and unapproved reference imagery are not presented as café content.
+- [x] **GALLERY-01**: Visitor can view a small responsive gallery made only from café-provided images.
+- [x] **GALLERY-02**: Gallery images include meaningful alt text, stable dimensions, and loading behavior that avoids avoidable layout shifts.
+- [x] **GALLERY-03**: Sponsor branding, sponsor logos, advertisement layout, and unapproved reference imagery are not presented as café content.
 
 ### Responsive, Accessible, and Visual Foundation
 
@@ -103,9 +103,9 @@ Updated by roadmap creation.
 | ABOUT-03 | Phase 1 | Complete |
 | MAP-01 | Phase 2 | Complete |
 | MAP-02 | Phase 2 | Complete |
-| GALLERY-01 | Phase 3 | Pending |
-| GALLERY-02 | Phase 3 | Pending |
-| GALLERY-03 | Phase 3 | Pending |
+| GALLERY-01 | Phase 3 | Complete |
+| GALLERY-02 | Phase 3 | Complete |
+| GALLERY-03 | Phase 3 | Complete |
 | UX-01 | Phase 2 | Complete |
 | UX-02 | Phase 2 | Complete |
 | UX-03 | Phase 1 | Complete |

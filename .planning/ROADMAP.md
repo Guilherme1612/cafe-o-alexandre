@@ -13,7 +13,7 @@ Deliver a small, static-first Astro page that helps a local visitor identify Caf
 
 - [x] **Phase 1: Static Foundation & Content Truth** - Establish the Astro shell, shared verified-content boundary, and visual foundations. (completed 2026-08-02)
 - [x] **Phase 2: Mobile Visitor Information Flow** - Deliver the complete identity, story, contact, directions, and footer path. (completed 2026-08-02)
-- [ ] **Phase 3: Café Photo Gallery** - Add a small responsive gallery from supplied photos with a no-JavaScript fallback.
+- [x] **Phase 3: Café Photo Gallery** - Add a small responsive gallery from supplied photos with a no-JavaScript fallback. (completed 2026-08-02)
 - [ ] **Phase 4: Resilience, Validation & Static Launch** - Prove the built page remains useful and accessible in degraded conditions and is ready for static hosting.
 
 ## Phase Details
@@ -88,5 +88,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Static Foundation & Content Truth | 2/2 | Complete    | 2026-08-02 |
 | 2. Mobile Visitor Information Flow | 2/2 | Complete    | 2026-08-02 |
-| 3. Café Photo Gallery | 0/TBD | Not started | - |
+| 3. Café Photo Gallery | 1/1 | Complete    | 2026-08-02 |
 | 4. Resilience, Validation & Static Launch | 0/TBD | Not started | - |
