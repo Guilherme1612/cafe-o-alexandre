@@ -11,8 +11,6 @@ const sourcePath = path.resolve(
 const source = await readFile(sourcePath, 'utf8');
 
 const placeholders = {
-  description: '[DESCRIÇÃO DO CAFÉ]',
-  offerings: '[OFERTA DO CAFÉ]',
   images: '[IMAGENS DO CAFÉ]'
 };
 

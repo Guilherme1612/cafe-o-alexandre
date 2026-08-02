@@ -13,8 +13,6 @@ const css = await readFile(cssPath, 'utf8');
 const pageSource = await readFile(pageSourcePath, 'utf8');
 
 const placeholders = [
-  '[DESCRIÇÃO DO CAFÉ]',
-  '[OFERTA DO CAFÉ]',
   '[IMAGENS DO CAFÉ]'
 ];
 
@@ -28,21 +26,22 @@ test('generated page keeps the semantic shell and Portuguese copy', () => {
   assert.match(html, /class="site-header"/);
   assert.match(html, /class="hero-art"/);
   assert.match(html, /class="hero-art__image"/);
+  assert.match(html, /class="wordmark__image"/);
   assert.match(html, /Bem-vindo ao Café o Alexandre\./);
   assert.match(html, /Visite-nos/);
   assert.match(html, /Ligar 927 605 689/);
   assert.match(html, /Obter direções/);
   assert.match(html, /Av\. Principal 51, 2665-305 Milharado, Portugal/);
   assert.match(html, /07:00–20:00/);
-  assert.match(html, /<h2[^>]*>Sobre nós<\/h2>/);
   assert.match(html, /<h2[^>]*>Planeie a sua visita<\/h2>/);
   assert.match(html, /<h2[^>]*>Veja o espaço<\/h2>/);
+  assert.doesNotMatch(html, /Sobre nós|Sobre o café|O que servimos/);
   assert.doesNotMatch(html, /WhatsApp|Social media|Redes sociais/i);
   assert.match(html, /site-footer__inner/);
   assert.match(html, /class="skip-link" href="#main-content">Saltar para o conteúdo<\/a>/);
   assert.match(html, /<header\b/);
   assert.match(html, /<main id="main-content">/);
-  assert.equal(count(/<section\b/g, html), 4);
+  assert.equal(count(/<section\b/g, html), 3);
   assert.match(html, /<footer\b/);
   assert.equal(count(/<h1\b/g, html), 1);
   assert.match(html, /<h3>Fotografias em breve<\/h3>/);
@@ -53,14 +52,11 @@ test('generated page keeps the semantic shell and Portuguese copy', () => {
     match[1].replace(/<[^>]+>/g, '')
   );
   assert.deepEqual(headings, [
-    'Sobre nós',
     'Planeie a sua visita',
     'Veja o espaço'
   ]);
 
   const expectedCounts = {
-    '[DESCRIÇÃO DO CAFÉ]': 1,
-    '[OFERTA DO CAFÉ]': 1,
     '[IMAGENS DO CAFÉ]': 0
   };
   for (const placeholder of placeholders) {
@@ -100,7 +96,7 @@ test('gallery source keeps semantic image metadata for future local entries', ()
 });
 
 test('generated page includes the global visual contract', () => {
-  for (const color of ['#f3e9db', '#211c1e', '#7c2438', '#d4ad62']) {
+  for (const color of ['#f7ecdd', '#1d1e24', '#8f1631', '#d7aa52']) {
     assert.match(css, new RegExp(color, 'i'));
   }
 
@@ -109,7 +105,7 @@ test('generated page includes the global visual contract', () => {
   }
 
   assert.match(css, /--content-width:\s*1180px/);
-  assert.match(css, /--copy-width:\s*62ch/);
+  assert.match(css, /--font-display:\s*Georgia/);
   assert.doesNotMatch(css, /(?:min-width|min-inline-size):\s*320px/);
   assert.match(css, /inline-size: min\(/);
   assert.match(css, /overflow-wrap: anywhere/);

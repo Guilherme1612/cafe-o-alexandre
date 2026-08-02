@@ -22,12 +22,11 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
     <header class="site-header">
       <nav class="site-nav shell" aria-label="Navegação principal">
         <a class="wordmark" href="#main-content" aria-label={`${cafe.name} início`}>
-          <span class="wordmark__mark" aria-hidden="true">A</span>
+          <img class="wordmark__image" src="/images/cafe-o-alexandre.jpg" alt="" width="64" height="36" aria-hidden="true" />
           <span>{cafe.name}</span>
         </a>
         <div class="site-nav__links">
           <a href="#visit">Visitar</a>
-          <a href="#about">Sobre</a>
           {phoneHref && <a class="site-nav__phone" href={phoneHref}>Ligar {cafe.phone}</a>}
         </div>
       </nav>
@@ -61,22 +60,6 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
           <figure class="hero-art">
             <img class="hero-art__image" src="/images/cafe-o-alexandre.jpg" alt="Imagem promocional do Café o Alexandre com uma chávena de café" width="1600" height="893" fetchpriority="high" decoding="async" />
           </figure>
-        </div>
-      </section>
-
-      <section class="section section--about" id="about" aria-labelledby="about-title">
-        <div class="shell section__inner section__inner--about">
-          <div class="section-heading">
-            <p class="section-heading__index">Sobre o café</p>
-            <h2 id="about-title">Sobre nós</h2>
-          </div>
-          <div class="section-copy">
-            <p class="lead">{cafe.description}</p>
-            <div class="offer-line">
-              <span class="label">O que servimos</span>
-              <span class="placeholder">{cafe.offerings}</span>
-            </div>
-          </div>
         </div>
       </section>
 

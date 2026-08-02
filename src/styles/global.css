@@ -1,14 +1,14 @@
 :root {
-  --ink: #211c1e;
-  --ink-soft: #302629;
-  --burgundy: #7c2438;
-  --burgundy-deep: #4d1525;
-  --gold: #d4ad62;
-  --cream: #f3e9db;
-  --cream-muted: #c9b8a8;
-  --line: rgb(243 233 219 / 20%);
-  --line-strong: rgb(212 173 98 / 56%);
-  --muted: #bba99c;
+  --ink: #1d1e24;
+  --ink-soft: #292a31;
+  --burgundy: #8f1631;
+  --burgundy-deep: #5a0a1b;
+  --gold: #d7aa52;
+  --cream: #f7ecdd;
+  --cream-muted: #cdb9a7;
+  --line: rgb(247 236 221 / 20%);
+  --line-strong: rgb(215 170 82 / 58%);
+  --muted: #bea897;
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
@@ -17,7 +17,7 @@
   --space-6: 72px;
   --space-7: 96px;
   --font-body: "Avenir Next", Avenir, "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
-  --font-display: Iowan Old Style, Baskerville, "Times New Roman", ui-serif, serif;
+  --font-display: Georgia, "Times New Roman", ui-serif, serif;
   --text-sm: 0.8125rem;
   --text-body: 1rem;
   --text-md: 1.25rem;
@@ -108,7 +108,7 @@ a:active {
 .wordmark {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   min-block-size: 44px;
   color: var(--cream);
   font-size: var(--text-sm);
@@ -117,17 +117,21 @@ a:active {
   text-decoration: none;
 }
 
-.wordmark__mark {
-  display: grid;
-  place-items: center;
-  inline-size: 28px;
-  block-size: 28px;
-  border: 1px solid var(--gold);
-  border-radius: 50%;
-  color: var(--gold);
+.wordmark__image {
+  display: block;
+  inline-size: 38px;
+  block-size: 24px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  object-fit: cover;
+  object-position: 20% 20%;
+}
+
+.wordmark > span:last-child {
   font-family: var(--font-display);
-  font-size: 18px;
-  font-style: italic;
+  font-size: 0.82rem;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .site-nav__links {
@@ -216,7 +220,7 @@ h1 {
   color: var(--cream);
   font-family: var(--font-display);
   font-size: var(--text-lg);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.045em;
   line-height: 0.92;
   overflow-wrap: anywhere;
@@ -229,8 +233,8 @@ h1 em {
 
 h1 em {
   color: var(--gold);
-  font-style: italic;
-  line-height: 1.05;
+  font-style: normal;
+  line-height: 0.98;
 }
 
 .hero__welcome {
@@ -328,7 +332,6 @@ h1 em {
   padding-block: var(--space-7);
 }
 
-.section--about,
 .section--gallery {
   background: var(--ink-soft);
 }
@@ -346,37 +349,9 @@ h2 {
   color: var(--cream);
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 4.25rem);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 0.98;
-}
-
-.section__inner--about {
-  display: grid;
-  gap: var(--space-6);
-}
-
-.section-copy {
-  max-inline-size: var(--copy-width);
-}
-
-.lead {
-  margin: 0;
-  color: var(--cream);
-  font-size: clamp(1.2rem, 2.5vw, 1.65rem);
-  line-height: 1.45;
-}
-
-.offer-line {
-  display: grid;
-  gap: 8px;
-  margin-block-start: var(--space-5);
-  padding-block-start: var(--space-2);
-  border-block-start: 1px solid var(--line);
-}
-
-.offer-line .label {
-  color: var(--gold);
 }
 
 .placeholder {
