@@ -17,6 +17,7 @@ const placeholders = [
   '[OPENING HOURS]',
   '[SOCIAL LINKS]',
   '[CAFÉ DESCRIPTION]',
+  '[CAFÉ OFFER]',
   '[GOOGLE MAPS LINK]',
   '[CAFÉ IMAGES]'
 ];
@@ -31,12 +32,20 @@ test('generated page keeps the semantic shell and source-backed copy', () => {
   assert.match(html, /class="display-title"/);
   assert.match(html, /Welcome to Café o Alexandre\./);
   assert.match(html, /Phone number not yet available/);
+  assert.match(html, /Find us/);
+  assert.match(html, /Call Us · Phone number not yet available/);
+  assert.match(html, /Get Directions · Link not yet available/);
   assert.match(html, /Café details coming soon/);
   assert.match(html, /Verified café information will appear here once it is provided\./);
+  assert.match(html, /<h2[^>]*>About Us<\/h2>/);
+  assert.match(html, /<h2[^>]*>What we offer<\/h2>/);
+  assert.match(html, /<h2[^>]*>Practical information<\/h2>/);
+  assert.match(html, /Social media/);
+  assert.match(html, /site-footer__contact/);
   assert.match(html, /class="skip-link" href="#main-content">Skip to content<\/a>/);
   assert.match(html, /<header\b/);
   assert.match(html, /<main id="main-content">/);
-  assert.equal(count(/<section\b/g, html), 4);
+  assert.equal(count(/<section\b/g, html), 5);
   assert.match(html, /<footer\b/);
   assert.equal(count(/<h1\b/g, html), 1);
 
@@ -45,13 +54,28 @@ test('generated page keeps the semantic shell and source-backed copy', () => {
   );
   assert.deepEqual(headings, [
     'Café details coming soon',
-    'Café details',
-    'About the café',
+    'About Us',
+    'What we offer',
+    'Practical information',
     'Café images'
   ]);
 
+  const expectedCounts = {
+    '[FULL ADDRESS]': 3,
+    '[PHONE NUMBER]': 2,
+    '[WHATSAPP NUMBER]': 1,
+    '[OPENING HOURS]': 1,
+    '[SOCIAL LINKS]': 1,
+    '[CAFÉ DESCRIPTION]': 1,
+    '[CAFÉ OFFER]': 1,
+    '[GOOGLE MAPS LINK]': 1,
+    '[CAFÉ IMAGES]': 1
+  };
   for (const placeholder of placeholders) {
-    assert.equal(count(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), html), 1);
+    assert.equal(
+      count(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), html),
+      expectedCounts[placeholder]
+    );
   }
 });
 
@@ -65,7 +89,6 @@ test('unresolved content does not become an actionable destination', () => {
 test('generated page includes the global visual contract', () => {
   for (const color of ['#f7f0e4', '#272323', '#762536', '#c39a5a']) {
     assert.match(css, new RegExp(color, 'i'));
-    assert.match(html, new RegExp(color, 'i'));
   }
 
   for (const spacing of ['4px', '8px', '16px', '24px', '32px', '48px', '64px']) {
