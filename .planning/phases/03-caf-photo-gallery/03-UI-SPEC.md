@@ -1,127 +1,28 @@
----
-phase: 3
-slug: caf-photo-gallery
-status: draft
-shadcn_initialized: false
-preset: none
-created: 2026-08-02
----
+# Phase 3 UI Contract: Café Photo Gallery
 
-# Phase 3 — UI Design Contract
+## Direction
 
-> Visual and interaction contract for the café photo gallery. Extends the Phase 1/2 static Astro shell without changing the content-truth boundary.
+Extend the Phase 1/2 system: cream page background, charcoal text/footer, burgundy headings, and warm gold focus/accent. The gallery should feel like a quiet local café album, not an advertising grid.
 
-## Design System
+## Layout and hierarchy
 
-| Property | Value |
-|----------|-------|
-| Tool | none — continue the hand-authored CSS custom properties |
-| Preset | not applicable |
-| Component library | none |
-| Icon library | none; use visible text and native links only |
-| Font | Phase 1/2 system sans body (`ui-sans-serif, system-ui, -apple-system, sans-serif`) and system serif display (`ui-serif, Georgia, Cambria, serif`) |
+- Keep the existing “Café images” section in the page sequence after practical information.
+- When no verified café images exist, show a compact bordered empty state with the heading “Photos coming soon” and a plain explanation that café photos will appear once supplied.
+- When images exist, use semantic `<figure>` cards with visible captions. Use one column below 768px, two columns from 768px, and three columns from 1200px.
+- Keep all gallery text within the existing 65ch measure and preserve generous 16/24/32/48px spacing.
 
-This is a static Astro page. Keep the gallery dependency-free: use local `src/assets/` files with Astro `Image`/`Picture` or native responsive `<img>`. Do not add a client framework, image CDN, remote image URL, map SDK, gallery package, external font request, or registry block. The supplied reference/sponsor image is palette inspiration only and is not a gallery asset.
+## Image contract
 
-## Spacing Scale
+- Use local paths only, lazy loading, `decoding="async"`, and explicit `width`/`height` or aspect-ratio to reduce layout shift.
+- Require descriptive alt text per image; never use filenames or generic “image” as alt text.
+- Do not use sponsor artwork, sponsor branding, external stock photos, image-only controls, hover-only captions, or an unrequested lightbox.
 
-Inherited from Phases 1/2; every value is a multiple of 4px.
+## Responsive/accessibility
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| xs | 4px | Image-to-caption gap and label details |
-| sm | 8px | Figure caption padding and compact metadata |
-| md | 16px | Mobile shell gutter and gallery column gap |
-| lg | 24px | Tablet gallery gap and figure grouping |
-| xl | 32px | Desktop gallery gap and major content grouping |
-| 2xl | 48px | Mobile gallery section padding |
-| 3xl | 64px | Tablet/desktop gallery section padding |
+- Cards and captions wrap at 320px and 200% zoom with no horizontal overflow.
+- Contrast and focus rules inherit the existing global stylesheet. Images are not links in this phase, so no new focus target is needed.
+- Respect `prefers-reduced-motion`; no entrance, autoplay, parallax, or hover animation.
 
-Exceptions: image links, if used, retain the existing minimum 48px block size / 44px inline size; 1px image borders are structural, not spacing tokens. Do not introduce fixed-height image slots that crop supplied photos.
+## Deferred registry/runtime
 
-## Typography
-
-Use the existing two weights only (400 regular and 600 semibold). Captions are readable text, not text baked into images.
-
-| Role | Size | Weight | Line Height |
-|------|------|--------|-------------|
-| Body | 16px | 400 | 1.5 |
-| Label | 14px | 600 | 1.4 |
-| Heading | 24px | 600 | 1.2 |
-| Display | 40px | 600 | 1.1 |
-
-Gallery captions use the 14px label size at regular weight (400) and 1.4 line height; never reduce them below 14px. Keep all gallery and fallback copy readable at 200% zoom and within the existing 65ch measure.
-
-## Color
-
-Continue the Phase 1/2 60/30/10 composition; the photos themselves are not a source for new UI colors.
-
-| Role | Value | Usage |
-|------|-------|-------|
-| Dominant (60%) | Cream `#F7F0E4` | Page and gallery surface, readable empty state, figure caption area |
-| Secondary (30%) | Charcoal `#272323` | Existing hero/footer and any dark fallback text surface; do not add a gallery-only dark band |
-| Accent (10%) | Burgundy `#762536` and warm gold `#C39A5A` | Burgundy: `Café images` heading, section rule, quiet figure border, and native link text. Gold: focus ring and small rule/detail on dark surfaces only |
-| Destructive | `#B42318` | No destructive action exists in this phase |
-
-Accent reserved for: gallery heading/rule, the existing verified action/link treatment, a quiet burgundy border around each figure, and the existing 3px warm-gold `:focus-visible` ring. Do not use gold as body text on cream, put text over photos, add gradients/overlays/shadows, or recreate the sponsor advertisement, logo, cup branding, phone number, or layout.
-
-## Gallery Structure and Source Contract
-
-- Keep the gallery section in the current document order: after the practical information/directions content and before the footer. It must not displace the hero identity, contact actions, or directions path.
-- Use one semantic section with `aria-labelledby="gallery-title"`, one `h2` titled `Café images`, and a grid of `figure` items. Preserve the source order supplied by the café.
-- The gallery renders only a small curated owner-supplied set (maximum six visible images in v1). Do not add a carousel, autoplay, masonry script, or image-management UI.
-- Keep the content boundary in `src/data/cafe.ts`. A verified image entry must point to a local asset and carry its intrinsic `width`, `height`, and café-approved meaningful `alt` text. A caption is optional and is rendered only when the café supplied one; never derive copy from a filename, sponsor material, or visual guess.
-- Use Astro `Image`/`Picture` or native `<img>` with explicit intrinsic `width`/`height`, `width: 100%`, `height: auto`, `display: block`, responsive `srcset`/`sizes`, and `decoding="async"`. Gallery images are below the fold, so use `loading="lazy"`; do not preload them.
-- The baseline responsive size hint is `sizes="(min-width: 1200px) 32rem, (min-width: 768px) 50vw, 100vw"` (or the equivalent generated by Astro). Preserve the source aspect ratio; do not force `object-fit: cover` or a fixed aspect ratio that crops café details.
-
-## Layout and Responsive Contract
-
-- At 320px: one column, 16px shell gutters, 16px row gap, full available card width, and no horizontal scrolling. Figure captions wrap naturally.
-- At 768px: two equal columns, 24px column/row gap, 24px shell gutters. Keep the grid in DOM/source order.
-- At 1200px: three equal columns, 32px gap, 32px shell gutters, and the existing 72rem maximum content width. Do not stretch a single photo or caption beyond the content shell.
-- Use CSS grid and intrinsic image sizing only; no client-side viewport detection. The gallery must remain readable and usable at 200% zoom/reflow and with long owner-provided captions.
-- Keep figures visually quiet: cream surface, 1px burgundy-tinted border, 8px radius inherited from the existing token, and no heavy card elevation. Never overlay controls or text on an image.
-
-## Captions, Alt Text, and Image Failure
-
-- Every rendered gallery image has non-empty, café-approved alternative text describing the visible scene or subject. Do not use `"image"`, `"photo 1"`, the filename, sponsor copy, or an invented claim. Because these are content images, do not use empty `alt` text unless the café explicitly marks that image as decorative and the figure carries no essential information.
-- Use `<figcaption>` only for a supplied caption that adds context beyond the `alt` text. Do not emit an empty caption element or duplicate the same sentence in both fields.
-- If the current `[CAFÉ IMAGES]` value remains unresolved, render no `<img>` and no broken link. Render a cream placeholder panel in the same section with the exact visible token `[CAFÉ IMAGES]`, heading `Café images coming soon`, and the body `Café-provided photos will appear here once they are supplied.` Add the existing muted/dashed placeholder treatment; this is informational text, not a disabled control.
-- If an individual asset or its required alt metadata is unavailable, omit that image from the grid and show the same readable fallback rather than guessing. The fallback must not block the rest of the page, contact actions, or directions, with JavaScript disabled.
-- Keep intrinsic dimensions on every real image so the grid allocates space before loading. A failed image must leave a bounded figure/alt-text fallback, not collapse surrounding content or create a keyboard trap.
-
-## Interaction and Focus Contract
-
-- The default gallery is non-interactive: images are viewed in place, with no click handler, no hover-only information, and no icon-only control.
-- Do not add a lightbox, PhotoSwipe, Swiper, carousel, modal, or custom image viewer in Phase 3. A plain responsive grid is the no-JavaScript baseline and remains the source of truth.
-- If a future implementation intentionally wraps a supplied image in a native anchor to its full-size local file, the anchor must expose a descriptive accessible name such as `View larger café photo: {supplied caption or alt}` and must retain the existing 3px warm-gold `:focus-visible` outline with 2px offset, 48px block/44px inline minimum, and no keyboard trap. Do not add anchors solely to simulate a lightbox.
-- Use semantic HTML before ARIA. Keep source/tab order aligned with the visual grid, respect `prefers-reduced-motion: reduce`, and preserve the entire information/contact flow without JavaScript.
-
-## Copywriting Contract
-
-| Element | Copy |
-|---------|------|
-| Primary CTA | Inherited Phase 2 `Call the café`; this phase adds no new gallery CTA |
-| Empty state heading | `Café images coming soon` |
-| Empty state body | `Café-provided photos will appear here once they are supplied.` |
-| Error state | `This photo is unavailable. Café information and contact actions remain available above.` |
-| Destructive confirmation | None — no destructive controls in this phase |
-
-Keep the exact `[CAFÉ IMAGES]` token visible while assets are unsupplied. Do not invent photo captions, menu claims, atmosphere claims, sponsor references, or image provenance. The existing `Café o Alexandre` identity, practical information, and directions copy remain unchanged.
-
-## Registry Safety
-
-| Registry | Blocks Used | Safety Gate |
-|----------|-------------|-------------|
-| none | none | not applicable — Astro project has no shadcn or third-party registry |
-
-## Checker Sign-Off
-
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
-
-**Approval:** pending
+- No third-party component registry, PhotoSwipe, modal, framework island, or image CDN is required. Lightbox behavior is deferred to v2.
