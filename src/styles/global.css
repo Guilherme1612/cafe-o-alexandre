@@ -56,6 +56,10 @@ a {
   transition: color var(--ease), background-color var(--ease), border-color var(--ease), transform var(--ease);
 }
 
+section[id] {
+  scroll-margin-block-start: var(--space-3);
+}
+
 a:focus-visible,
 button:focus-visible {
   outline: 3px solid var(--gold);
@@ -125,6 +129,7 @@ a:active {
   border-radius: 6px;
   object-fit: cover;
   object-position: 20% 20%;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .wordmark > span:last-child {
@@ -132,6 +137,11 @@ a:active {
   font-size: 0.82rem;
   letter-spacing: -0.02em;
   white-space: nowrap;
+}
+
+.wordmark:hover .wordmark__image,
+.wordmark:focus-visible .wordmark__image {
+  transform: rotate(-2deg) scale(1.06);
 }
 
 .site-nav__links {
@@ -264,6 +274,16 @@ h1 em {
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
+  transition: transform var(--ease), color var(--ease), background-color var(--ease), border-color var(--ease);
+}
+
+.action:hover,
+.action:focus-visible {
+  transform: translateY(-2px);
+}
+
+.action:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .action--primary {
@@ -322,6 +342,12 @@ h1 em {
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-art:hover .hero-art__image,
+.hero-art:focus-within .hero-art__image {
+  transform: scale(1.035);
 }
 
 .section {
@@ -540,6 +566,96 @@ h2 {
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .site-header,
+  .hero__kicker,
+  #page-title,
+  .hero__welcome,
+  .hero__actions,
+  .hero__address,
+  .hero-art {
+    opacity: 0;
+    animation: rise-in 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .site-header {
+    animation-delay: 40ms;
+  }
+
+  .hero__kicker {
+    animation-delay: 120ms;
+  }
+
+  #page-title {
+    animation-delay: 190ms;
+  }
+
+  .hero__welcome {
+    animation-delay: 270ms;
+  }
+
+  .hero__actions {
+    animation-delay: 350ms;
+  }
+
+  .hero__address {
+    animation-delay: 430ms;
+  }
+
+  .hero-art {
+    animation-name: image-in;
+    animation-delay: 180ms;
+    animation-duration: 980ms;
+  }
+
+  @supports (animation-timeline: view()) {
+    .section-heading,
+    .info-list,
+    .gallery-empty,
+    .gallery-grid {
+      animation: section-in 700ms both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 34%;
+    }
+  }
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes image-in {
+    from {
+      opacity: 0;
+      transform: translateX(22px) scale(1.015);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  @keyframes section-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -549,5 +665,6 @@ h2 {
   *::before,
   *::after {
     transition-duration: 0ms !important;
+    animation: none !important;
   }
 }

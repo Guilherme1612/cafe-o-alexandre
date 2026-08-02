@@ -122,6 +122,10 @@ test('generated page includes the global visual contract', () => {
   assert.match(css, /outline-offset: 3px/);
   assert.match(css, /180ms/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
-  assert.doesNotMatch(css, /gradient|animation|@keyframes/i);
+  assert.doesNotMatch(css, /gradient/i);
+  assert.match(css, /@media \(prefers-reduced-motion: no-preference\)/);
+  assert.match(css, /@keyframes rise-in/);
+  assert.match(css, /animation-timeline: view\(\)/);
+  assert.match(css, /animation: none !important/);
   assert.doesNotMatch(css, /[;{]\s*(?:height|min-height|max-height)\s*:/i);
 });
