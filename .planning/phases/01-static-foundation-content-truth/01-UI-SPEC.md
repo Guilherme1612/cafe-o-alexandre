@@ -48,9 +48,9 @@ Use only the two weights below (400 regular and 600 semibold). Display type is t
 | Body | 16px | 400 | 1.5 |
 | Label | 14px | 600 | 1.4 |
 | Heading | 24px | 600 | 1.2 |
-| Display | 36px (48px at min-width 768px) | 600 | 1.1 |
+| Display | 40px | 600 | 1.1 |
 
-Body copy is limited to a comfortable 65ch; hero supporting copy is limited to 38ch. Do not add a display size larger than 48px for this concise page.
+Body copy is limited to a comfortable 65ch; hero supporting copy is limited to 38ch. Keep the display size at 40px across breakpoints so the contract has one stable scale and the title remains readable on narrow screens.
 
 ## Color
 
@@ -106,7 +106,7 @@ Placeholder values must remain visibly bracketed and human-readable: `[FULL ADDR
 ## Responsive Contract
 
 - Mobile-first baseline supports 320px wide viewports without horizontal scrolling. Use a single-column flow, 16px gutters, 48px section padding, and left-aligned text except where a short hero identity lockup is explicitly centered.
-- At 768px, increase gutters to 24px, display title to 48px, and permit two-column sections while keeping the hero identity and primary action in the first viewport.
+- At 768px, increase gutters to 24px, keep the display title at 40px, and permit two-column sections while keeping the hero identity and primary action in the first viewport.
 - At 1200px, cap content at 72rem and use 32px gutters/64px section separation. Never stretch text lines beyond 65ch.
 - Use CSS media queries and intrinsic sizing only; no client-side viewport detection. Keep all information and placeholder copy readable at 200% zoom.
 
