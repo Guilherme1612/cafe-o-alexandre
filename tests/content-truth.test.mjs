@@ -53,3 +53,11 @@ test('approved identity and empty-state copy remain source-backed', () => {
 test('content source contains no actionable destination schemes', () => {
   assert.doesNotMatch(source, /['"`](?:tel:|whatsapp:|mailto:|https?:\/\/)/i);
 });
+
+test('gallery stays empty until verified local café images arrive', () => {
+  assert.match(source, /export type GalleryImage = Readonly<\{/);
+  for (const field of ['src', 'alt', 'caption', 'width', 'height']) {
+    assert.match(source, new RegExp(`\\b${field}:`), `${field} is required gallery metadata`);
+  }
+  assert.match(source, /gallery:\s*\[\]\s+as readonly GalleryImage\[\]/);
+});

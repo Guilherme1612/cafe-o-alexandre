@@ -7,8 +7,10 @@ import path from 'node:path';
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
 const distPath = path.resolve(testDirectory, '../dist/index.html');
 const cssPath = path.resolve(testDirectory, '../src/styles/global.css');
+const pageSourcePath = path.resolve(testDirectory, '../src/pages/index.astro');
 const html = await readFile(distPath, 'utf8');
 const css = await readFile(cssPath, 'utf8');
+const pageSource = await readFile(pageSourcePath, 'utf8');
 
 const placeholders = [
   '[FULL ADDRESS]',
@@ -48,6 +50,10 @@ test('generated page keeps the semantic shell and source-backed copy', () => {
   assert.equal(count(/<section\b/g, html), 5);
   assert.match(html, /<footer\b/);
   assert.equal(count(/<h1\b/g, html), 1);
+  assert.match(html, /<h2[^>]*>Café images<\/h2>/);
+  assert.match(html, /<h3>Photos coming soon<\/h3>/);
+  assert.match(html, /Photos of the café will appear here once they are supplied\./);
+  assert.doesNotMatch(html, /<img\b/);
 
   const headings = [...html.matchAll(/<h2\b[^>]*>(.*?)<\/h2>/g)].map((match) =>
     match[1].replace(/<[^>]+>/g, '')
@@ -69,7 +75,7 @@ test('generated page keeps the semantic shell and source-backed copy', () => {
     '[CAFÉ DESCRIPTION]': 1,
     '[CAFÉ OFFER]': 1,
     '[GOOGLE MAPS LINK]': 1,
-    '[CAFÉ IMAGES]': 1
+    '[CAFÉ IMAGES]': 0
   };
   for (const placeholder of placeholders) {
     assert.equal(
@@ -82,8 +88,19 @@ test('generated page keeps the semantic shell and source-backed copy', () => {
 test('unresolved content does not become an actionable destination', () => {
   assert.doesNotMatch(html, /tel:/i);
   assert.doesNotMatch(html, /(?:href|src)="[^"]*(?:whatsapp|maps\.google|google\.com\/maps|facebook|instagram|twitter|x\.com|mailto:)/i);
+  assert.doesNotMatch(html, /(?:href|src)="[^"]*\[[^\"]+\]/i);
   assert.doesNotMatch(html, /(?:href|src)="[^"]+\.(?:jpe?g|png|webp|avif|gif)(?:["?#]|$)/i);
   assert.doesNotMatch(html, /\b(?:sponsor|sponsored|advertisement|advertiser|logo)\b/i);
+});
+
+test('gallery source keeps semantic image metadata for future local entries', () => {
+  assert.match(pageSource, /<figure class="gallery-card">/);
+  assert.match(pageSource, /<img[\s\S]*src=\{image\.src\}[\s\S]*alt=\{image\.alt\}/);
+  assert.match(pageSource, /width=\{image\.width\}/);
+  assert.match(pageSource, /height=\{image\.height\}/);
+  assert.match(pageSource, /loading="lazy"/);
+  assert.match(pageSource, /decoding="async"/);
+  assert.match(pageSource, /<figcaption>\{image\.caption\}<\/figcaption>/);
 });
 
 test('generated page includes the global visual contract', () => {
@@ -106,6 +123,11 @@ test('generated page includes the global visual contract', () => {
   assert.match(css, /overflow-wrap: anywhere/);
   assert.match(css, /@media \(min-width: 768px\)/);
   assert.match(css, /@media \(min-width: 1200px\)/);
+  assert.match(css, /\.gallery-grid\s*\{[\s\S]*grid-template-columns: minmax\(0, 1fr\)/);
+  assert.match(css, /\.gallery-card\s+img\s*\{[\s\S]*aspect-ratio: 4 \/ 3[\s\S]*object-fit: cover/);
+  assert.match(css, /\.gallery-empty\s*\{[\s\S]*border: 1px dashed/);
+  assert.match(css, /@media \(min-width: 768px\)[\s\S]*\.gallery-grid\s*\{[\s\S]*repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(css, /@media \(min-width: 1200px\)[\s\S]*\.gallery-grid\s*\{[\s\S]*repeat\(3, minmax\(0, 1fr\)\)/);
   assert.match(css, /:focus-visible/);
   assert.match(css, /outline: 3px solid var\(--color-gold\)/);
   assert.match(css, /outline-offset: 2px/);
