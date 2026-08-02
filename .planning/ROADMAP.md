@@ -25,7 +25,10 @@ Deliver a small, static-first Astro page that helps a local visitor identify Caf
   1. Unknown address, contact, hours, social, and map values are visibly rendered as placeholders and do not create active links.
   2. All visible café copy and claims come from the shared content source; no inferred details or invented offerings appear.
   3. The page has a warm burgundy, charcoal, gold, and cream visual system with readable type and restrained motion that can carry the later sections.
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 01-01-PLAN.md — Bootstrap the static Astro toolchain and explicit café content boundary
+- [ ] 01-02-PLAN.md — Render the semantic shell, warm visual tokens, and static artifact assertions
 **UI hint**: yes
 
 ### Phase 2: Mobile Visitor Information Flow
