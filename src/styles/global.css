@@ -37,7 +37,6 @@ html {
 
 body {
   margin: 0;
-  min-width: 320px;
   background: var(--color-cream);
   color: var(--color-charcoal);
   font-size: var(--text-body);
@@ -103,6 +102,7 @@ button:focus-visible {
   font-size: var(--text-display);
   font-weight: 600;
   line-height: 1.1;
+  overflow-wrap: anywhere;
 }
 
 .hero__welcome {

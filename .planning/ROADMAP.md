@@ -86,7 +86,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Static Foundation & Content Truth | 2/2 | Complete   | 2026-08-02 |
+| 1. Static Foundation & Content Truth | 2/2 | Complete    | 2026-08-02 |
 | 2. Mobile Visitor Information Flow | 0/TBD | Not started | - |
 | 3. Café Photo Gallery | 0/TBD | Not started | - |
 | 4. Resilience, Validation & Static Launch | 0/TBD | Not started | - |

@@ -78,7 +78,7 @@ test('generated page includes the global visual contract', () => {
 
   assert.match(css, /72rem/);
   assert.match(css, /65ch/);
-  assert.match(css, /min-width: 320px/);
+  assert.doesNotMatch(css, /(?:min-width|min-inline-size):\s*320px/);
   assert.match(css, /inline-size: min\(/);
   assert.match(css, /overflow-wrap: anywhere/);
   assert.match(css, /@media \(min-width: 768px\)/);

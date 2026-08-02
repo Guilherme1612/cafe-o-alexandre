@@ -136,6 +136,12 @@ Additional correctness fix discovered during Task 1 verification:
 **Total deviations:** 2 auto-fixed (2 Rule 1 bugs)
 **Impact on plan:** Both fixes tightened generated-output correctness and deterministic validation; no runtime scope was added.
 
+## Post-verification fixes
+
+- Removed the fixed `body` minimum width so a 320px viewport with a vertical scrollbar has no horizontal overflow.
+- Added `overflow-wrap: anywhere` to the display title so the café name reflows at the simulated 200% zoom viewport.
+- Updated the static CSS contract test to reject forced 320px minimum widths.
+
 ## Issues Encountered
 
 None unresolved. `npm run build && npm test` passes all six tests.
