@@ -1,3 +1,11 @@
+export type GalleryImage = Readonly<{
+  src: `/images/${string}`;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+}>;
+
 type CafeContent = Readonly<{
   name: string;
   welcome: string;
@@ -15,6 +23,7 @@ type CafeContent = Readonly<{
   offerings: string;
   map: string;
   images: string;
+  gallery: readonly GalleryImage[];
 }>;
 
 export const cafe = {
@@ -33,5 +42,6 @@ export const cafe = {
   description: '[CAFÉ DESCRIPTION]',
   offerings: '[CAFÉ OFFER]',
   map: '[GOOGLE MAPS LINK]',
-  images: '[CAFÉ IMAGES]'
+  images: '[CAFÉ IMAGES]',
+  gallery: [] as readonly GalleryImage[]
 } as const satisfies CafeContent;
