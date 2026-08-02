@@ -11,7 +11,7 @@ Deliver a small, static-first Astro page that helps a local visitor identify Caf
 - Integer phases (1, 2, 3, 4): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Static Foundation & Content Truth** - Establish the Astro shell, shared verified-content boundary, and visual foundations.
+- [x] **Phase 1: Static Foundation & Content Truth** - Establish the Astro shell, shared verified-content boundary, and visual foundations. (completed 2026-08-02)
 - [ ] **Phase 2: Mobile Visitor Information Flow** - Deliver the complete identity, story, contact, directions, and footer path.
 - [ ] **Phase 3: Café Photo Gallery** - Add a small responsive gallery from supplied photos with a no-JavaScript fallback.
 - [ ] **Phase 4: Resilience, Validation & Static Launch** - Prove the built page remains useful and accessible in degraded conditions and is ready for static hosting.
@@ -29,11 +29,11 @@ Deliver a small, static-first Astro page that helps a local visitor identify Caf
   2. All visible café copy and claims come from the shared content source; no inferred details or invented offerings appear.
   3. The page has a warm burgundy, charcoal, gold, and cream visual system with readable type and restrained motion that can carry the later sections.
 
-**Plans**: 1/2 plans executed
+**Plans**: 2/2 plans complete
 Plans:
 
 - [x] 01-01-PLAN.md — Bootstrap the static Astro toolchain and explicit café content boundary
-- [ ] 01-02-PLAN.md — Render the semantic shell, warm visual tokens, and static artifact assertions
+- [x] 01-02-PLAN.md — Render the semantic shell, warm visual tokens, and static artifact assertions
 
 **UI hint**: yes
 
@@ -86,7 +86,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Static Foundation & Content Truth | 1/2 | In Progress|  |
+| 1. Static Foundation & Content Truth | 2/2 | Complete   | 2026-08-02 |
 | 2. Mobile Visitor Information Flow | 0/TBD | Not started | - |
 | 3. Café Photo Gallery | 0/TBD | Not started | - |
 | 4. Resilience, Validation & Static Launch | 0/TBD | Not started | - |

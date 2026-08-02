@@ -4,17 +4,17 @@ milestone: v1.0
 milestone_name: milestone
 current_phase: 01
 current_phase_name: Static Foundation & Content Truth
-status: executing
-stopped_at: Completed 01-01-PLAN.md
-last_updated: "2026-08-02T17:12:07.696Z"
+status: verifying
+stopped_at: Completed 01-02-PLAN.md
+last_updated: "2026-08-02T17:18:49.264Z"
 last_activity: 2026-08-02
 last_activity_desc: Phase 01 execution started
 progress:
   total_phases: 4
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 2
-  completed_plans: 1
-  percent: 0
+  completed_plans: 2
+  percent: 25
 ---
 
 # Project State
@@ -30,7 +30,7 @@ See: .planning/PROJECT.md (updated 2026-08-02)
 
 Phase: 01 (Static Foundation & Content Truth) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-08-02 — Phase 01 execution started
 
 Progress: [░░░░░░░░░░] 0%
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 
 **Recent Trend:** No completed plans yet.
 | Phase 01 P01 | 4min | 2 tasks | 7 files |
+| Phase 01 P02 | 4min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -65,6 +66,8 @@ Progress: [░░░░░░░░░░] 0%
 - Make a readable Google Maps link the directions path; an embed is not required for v1.
 - [Phase 01]: Pin Astro 7.1.6 with no adapter, runtime framework, or extra dependency.
 - [Phase 01]: Keep every unverified café fact as an exact bracketed string in one exported object.
+- [Phase 01]: Render the semantic shell from one shared cafe content object; unresolved values remain visible plain text.
+- [Phase 01]: Use system typography and native CSS tokens/media queries for a static dependency-free foundation.
 
 ### Pending Todos
 
@@ -87,6 +90,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-08-02T17:11:55.780Z
-Stopped at: Completed 01-01-PLAN.md
+Last session: 2026-08-02T17:18:49.259Z
+Stopped at: Completed 01-02-PLAN.md
 Resume file: None

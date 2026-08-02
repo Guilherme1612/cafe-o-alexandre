@@ -36,7 +36,7 @@ Requirements for the initial single-page release. Every requirement must preserv
 
 - [ ] **UX-01**: The page is mobile-first and remains readable and usable on narrow mobile, tablet, and desktop widths.
 - [ ] **UX-02**: The page uses semantic headings and landmarks, strong text contrast, visible keyboard focus, descriptive labels, and comfortable touch targets.
-- [ ] **UX-03**: The visual system uses burgundy red, charcoal black, warm gold, and cream in a warm, local, elegant composition with restrained motion.
+- [x] **UX-03**: The visual system uses burgundy red, charcoal black, warm gold, and cream in a warm, local, elegant composition with restrained motion.
 - [ ] **UX-04**: The footer repeats the verified address and phone number in a simple, accessible layout.
 - [ ] **UX-05**: The page remains useful with JavaScript disabled and with gallery images unavailable.
 
@@ -108,7 +108,7 @@ Updated by roadmap creation.
 | GALLERY-03 | Phase 3 | Pending |
 | UX-01 | Phase 2 | Pending |
 | UX-02 | Phase 2 | Pending |
-| UX-03 | Phase 1 | Pending |
+| UX-03 | Phase 1 | Complete |
 | UX-04 | Phase 2 | Pending |
 | UX-05 | Phase 4 | Pending |
 
