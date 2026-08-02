@@ -11,14 +11,9 @@ const sourcePath = path.resolve(
 const source = await readFile(sourcePath, 'utf8');
 
 const placeholders = {
-  address: '[FULL ADDRESS]',
-  whatsapp: '[WHATSAPP NUMBER]',
-  hours: '[OPENING HOURS]',
-  social: '[SOCIAL LINKS]',
-  description: '[CAFÉ DESCRIPTION]',
-  offerings: '[CAFÉ OFFER]',
-  map: '[GOOGLE MAPS LINK]',
-  images: '[CAFÉ IMAGES]'
+  description: '[DESCRIÇÃO DO CAFÉ]',
+  offerings: '[OFERTA DO CAFÉ]',
+  images: '[IMAGENS DO CAFÉ]'
 };
 
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -38,15 +33,18 @@ test('all unknown café fields stay explicit, non-empty placeholders', () => {
   }
 });
 
-test('verified identity and welcome copy remain source-backed', () => {
+test('verified identity and visit details remain source-backed', () => {
   assert.match(source, /name:\s*['"]Café o Alexandre['"]/);
-  assert.match(source, /welcome:\s*['"]Welcome to Café o Alexandre\.["']/);
+  assert.match(source, /welcome:\s*['"]Bem-vindo ao Café o Alexandre\.['"]/);
   assert.match(source, /phone:\s*['"]927 605 689['"]/);
-  assert.doesNotMatch(source, /Phone number not yet available|Café details coming soon/);
+  assert.match(source, /address:\s*['"]Av\. Principal 51, 2665-305 Milharado, Portugal['"]/);
+  assert.match(source, /hours:\s*['"]07:00–20:00['"]/);
+  assert.match(source, /map:\s*['"]https:\/\/www\.google\.com\/maps\/dir/);
 });
 
-test('content source contains no actionable destination schemes', () => {
-  assert.doesNotMatch(source, /['"`](?:tel:|whatsapp:|mailto:|https?:\/\/)/i);
+test('content source contains only verified destination schemes', () => {
+  assert.doesNotMatch(source, /['"`](?:whatsapp:|mailto:)/i);
+  assert.doesNotMatch(source, /whatsapp|social/i);
 });
 
 test('gallery stays empty until verified local café images arrive', () => {

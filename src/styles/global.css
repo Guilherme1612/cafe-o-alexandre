@@ -306,110 +306,18 @@ h1 em {
 
 .hero-art {
   position: relative;
-  min-block-size: 380px;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   background: var(--ink);
-  isolation: isolate;
 }
 
-.hero-art::before {
-  position: absolute;
-  inset: 11%;
-  border: 1px solid rgb(212 173 98 / 48%);
-  border-radius: 50%;
-  content: "";
-}
-
-.hero-art::after {
-  position: absolute;
-  inset-block-end: -22%;
-  inset-inline-end: -16%;
-  inline-size: 78%;
-  block-size: 66%;
-  border: 1px solid rgb(243 233 219 / 14%);
-  border-radius: 50%;
-  content: "";
-  transform: rotate(-18deg);
-}
-
-.hero-art__ring {
-  position: absolute;
-  inset: 25%;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.hero-art__ring--outer {
-  border: 1px solid rgb(243 233 219 / 20%);
-}
-
-.hero-art__ring--inner {
-  inset: 36%;
-  border: 10px solid var(--burgundy);
-}
-
-.hero-art__block {
-  position: absolute;
-  inset-block-start: 28%;
-  inset-inline-start: 30%;
-  inline-size: 42%;
-  block-size: 32%;
-  border: 1px solid var(--gold);
-  background: var(--burgundy);
-  transform: rotate(-8deg);
-}
-
-.hero-art__block span {
-  position: absolute;
-  inset-block-start: 50%;
-  inset-inline-start: 50%;
-  color: var(--cream);
-  font-size: var(--text-sm);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  line-height: 1.45;
-  text-align: center;
-  transform: translate(-50%, -50%);
-}
-
-.hero-art__stamp {
-  position: absolute;
-  inset-block-start: var(--space-3);
-  inset-inline-start: var(--space-3);
-  z-index: 1;
-  color: var(--cream-muted);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  line-height: 1.5;
-}
-
-.hero-art__word {
-  position: absolute;
-  inset-block-end: var(--space-4);
-  inset-inline-start: var(--space-3);
-  z-index: 1;
-  margin: 0;
-  color: var(--cream);
-  font-family: var(--font-display);
-  font-size: clamp(2.1rem, 6vw, 4.5rem);
-  letter-spacing: -0.04em;
-  line-height: 0.8;
-  transform: rotate(-8deg);
-}
-
-.hero-art__number {
-  position: absolute;
-  inset-block-end: var(--space-3);
-  inset-inline-end: var(--space-3);
-  z-index: 1;
-  margin: 0;
-  color: var(--gold);
-  font-size: var(--text-sm);
-  font-weight: 700;
-  letter-spacing: 0.08em;
+.hero-art__image {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
 }
 
 .section {
@@ -630,10 +538,6 @@ h2 {
   .hero__grid {
     grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
     gap: var(--space-7);
-  }
-
-  .hero-art {
-    min-block-size: 540px;
   }
 
   .section__inner--about {
