@@ -9,22 +9,22 @@ Requirements for the initial single-page release. Every requirement must preserv
 
 ### Visitor Information and Contact
 
-- [ ] **VIS-01**: Visitor can see “Café o Alexandre,” a short welcome sentence, the full address, a prominent Call Us action, and a Get Directions action in the hero.
-- [ ] **VIS-02**: Visitor can find address, phone, WhatsApp, opening hours, and social links in a practical information section.
-- [ ] **VIS-03**: A verified phone number is exposed as a native mobile `tel:` action with an accessible label.
-- [ ] **VIS-04**: A verified WhatsApp number is exposed as a native WhatsApp action with an accessible label.
+- [x] **VIS-01**: Visitor can see “Café o Alexandre,” a short welcome sentence, the full address, a prominent Call Us action, and a Get Directions action in the hero.
+- [x] **VIS-02**: Visitor can find address, phone, WhatsApp, opening hours, and social links in a practical information section.
+- [x] **VIS-03**: A verified phone number is exposed as a native mobile `tel:` action with an accessible label.
+- [x] **VIS-04**: A verified WhatsApp number is exposed as a native WhatsApp action with an accessible label.
 - [x] **VIS-05**: Unavailable address, contact, hours, social, or map values remain visibly marked placeholders and do not produce broken actions.
 
 ### Café Story and Offerings
 
-- [ ] **ABOUT-01**: Visitor can read a short About Us section populated from café-provided description text.
-- [ ] **ABOUT-02**: Visitor can understand what the café offers from readable text without needing an image-only menu.
+- [x] **ABOUT-01**: Visitor can read a short About Us section populated from café-provided description text.
+- [x] **ABOUT-02**: Visitor can understand what the café offers from readable text without needing an image-only menu.
 - [x] **ABOUT-03**: The page does not invent business copy, menu items, services, or claims.
 
 ### Directions and Discovery
 
-- [ ] **MAP-01**: Visitor can open a clear Google Maps directions link for the verified café destination.
-- [ ] **MAP-02**: Directions remain available as readable text if an embedded map is unavailable or not used.
+- [x] **MAP-01**: Visitor can open a clear Google Maps directions link for the verified café destination.
+- [x] **MAP-02**: Directions remain available as readable text if an embedded map is unavailable or not used.
 
 ### Gallery and Visual Content
 
@@ -34,10 +34,10 @@ Requirements for the initial single-page release. Every requirement must preserv
 
 ### Responsive, Accessible, and Visual Foundation
 
-- [ ] **UX-01**: The page is mobile-first and remains readable and usable on narrow mobile, tablet, and desktop widths.
-- [ ] **UX-02**: The page uses semantic headings and landmarks, strong text contrast, visible keyboard focus, descriptive labels, and comfortable touch targets.
+- [x] **UX-01**: The page is mobile-first and remains readable and usable on narrow mobile, tablet, and desktop widths.
+- [x] **UX-02**: The page uses semantic headings and landmarks, strong text contrast, visible keyboard focus, descriptive labels, and comfortable touch targets.
 - [x] **UX-03**: The visual system uses burgundy red, charcoal black, warm gold, and cream in a warm, local, elegant composition with restrained motion.
-- [ ] **UX-04**: The footer repeats the verified address and phone number in a simple, accessible layout.
+- [x] **UX-04**: The footer repeats the verified address and phone number in a simple, accessible layout.
 - [ ] **UX-05**: The page remains useful with JavaScript disabled and with gallery images unavailable.
 
 ## v2 Requirements
@@ -93,23 +93,23 @@ Updated by roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| VIS-01 | Phase 2 | Pending |
-| VIS-02 | Phase 2 | Pending |
-| VIS-03 | Phase 2 | Pending |
-| VIS-04 | Phase 2 | Pending |
+| VIS-01 | Phase 2 | Complete |
+| VIS-02 | Phase 2 | Complete |
+| VIS-03 | Phase 2 | Complete |
+| VIS-04 | Phase 2 | Complete |
 | VIS-05 | Phase 1 | Complete |
-| ABOUT-01 | Phase 2 | Pending |
-| ABOUT-02 | Phase 2 | Pending |
+| ABOUT-01 | Phase 2 | Complete |
+| ABOUT-02 | Phase 2 | Complete |
 | ABOUT-03 | Phase 1 | Complete |
-| MAP-01 | Phase 2 | Pending |
-| MAP-02 | Phase 2 | Pending |
+| MAP-01 | Phase 2 | Complete |
+| MAP-02 | Phase 2 | Complete |
 | GALLERY-01 | Phase 3 | Pending |
 | GALLERY-02 | Phase 3 | Pending |
 | GALLERY-03 | Phase 3 | Pending |
-| UX-01 | Phase 2 | Pending |
-| UX-02 | Phase 2 | Pending |
+| UX-01 | Phase 2 | Complete |
+| UX-02 | Phase 2 | Complete |
 | UX-03 | Phase 1 | Complete |
-| UX-04 | Phase 2 | Pending |
+| UX-04 | Phase 2 | Complete |
 | UX-05 | Phase 4 | Pending |
 
 ---
