@@ -93,11 +93,24 @@ Updated by roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| VIS-01–VIS-05 | Pending | Pending |
-| ABOUT-01–ABOUT-03 | Pending | Pending |
-| MAP-01–MAP-02 | Pending | Pending |
-| GALLERY-01–GALLERY-03 | Pending | Pending |
-| UX-01–UX-05 | Pending | Pending |
+| VIS-01 | Phase 2 | Pending |
+| VIS-02 | Phase 2 | Pending |
+| VIS-03 | Phase 2 | Pending |
+| VIS-04 | Phase 2 | Pending |
+| VIS-05 | Phase 1 | Pending |
+| ABOUT-01 | Phase 2 | Pending |
+| ABOUT-02 | Phase 2 | Pending |
+| ABOUT-03 | Phase 1 | Pending |
+| MAP-01 | Phase 2 | Pending |
+| MAP-02 | Phase 2 | Pending |
+| GALLERY-01 | Phase 3 | Pending |
+| GALLERY-02 | Phase 3 | Pending |
+| GALLERY-03 | Phase 3 | Pending |
+| UX-01 | Phase 2 | Pending |
+| UX-02 | Phase 2 | Pending |
+| UX-03 | Phase 1 | Pending |
+| UX-04 | Phase 2 | Pending |
+| UX-05 | Phase 4 | Pending |
 
 ---
 *Requirements are hypotheses until shipped and validated.*
