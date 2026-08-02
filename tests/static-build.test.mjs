@@ -93,6 +93,17 @@ test('unresolved content does not become an actionable destination', () => {
   assert.doesNotMatch(html, /\b(?:sponsor|sponsored|advertisement|advertiser|logo)\b/i);
 });
 
+test('static artifact stays dependency-free and keeps no-JavaScript fallbacks', () => {
+  assert.doesNotMatch(html, /<script\b/i);
+  assert.doesNotMatch(html, /<(?:iframe|img|source)\b[^>]*(?:src|srcset)=['"]https?:\/\//i);
+  assert.doesNotMatch(html, /<link\b[^>]*(?:href|src)=['"]https?:\/\//i);
+  assert.match(html, /<link rel="stylesheet" href="\/_astro\/[^\"]+\.css">/);
+  assert.match(html, /Call Us · Phone number not yet available/);
+  assert.match(html, /Get Directions · Link not yet available/);
+  assert.match(html, /Photos coming soon/);
+  assert.match(html, /Photos of the café will appear here once they are supplied\./);
+});
+
 test('gallery source keeps semantic image metadata for future local entries', () => {
   assert.match(pageSource, /<figure class="gallery-card">/);
   assert.match(pageSource, /<img[\s\S]*src=\{image\.src\}[\s\S]*alt=\{image\.alt\}/);
