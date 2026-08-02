@@ -12,6 +12,7 @@ type CafeContent = Readonly<{
   hours: string;
   social: string;
   description: string;
+  offerings: string;
   map: string;
   images: string;
 }>;
@@ -30,6 +31,7 @@ export const cafe = {
   hours: '[OPENING HOURS]',
   social: '[SOCIAL LINKS]',
   description: '[CAFÉ DESCRIPTION]',
+  offerings: '[CAFÉ OFFER]',
   map: '[GOOGLE MAPS LINK]',
   images: '[CAFÉ IMAGES]'
 } as const satisfies CafeContent;
