@@ -75,8 +75,10 @@ test('unresolved content does not become an actionable destination', () => {
   assert.doesNotMatch(html, /\b(?:sponsor|sponsored|advertisement|advertiser|logo)\b/i);
 });
 
-test('static artifact stays dependency-free and keeps no-JavaScript fallbacks', () => {
-  assert.doesNotMatch(html, /<script\b/i);
+test('static artifact keeps a small progressive motion enhancement', () => {
+  assert.match(html, /<script type="module">/);
+  assert.match(pageSource, /IntersectionObserver/);
+  assert.match(pageSource, /prefers-reduced-motion/);
   assert.doesNotMatch(html, /<(?:iframe|source)\b[^>]*(?:src|srcset)=['"]https?:\/\//i);
   assert.doesNotMatch(html, /<link\b[^>]*(?:href|src)=['"]https?:\/\//i);
   assert.match(html, /<link rel="stylesheet" href="\/_astro\/[^\"]+\.css">/);
@@ -125,7 +127,9 @@ test('generated page includes the global visual contract', () => {
   assert.doesNotMatch(css, /gradient/i);
   assert.match(css, /@media \(prefers-reduced-motion: no-preference\)/);
   assert.match(css, /@keyframes rise-in/);
-  assert.match(css, /animation-timeline: view\(\)/);
+  assert.match(css, /\.motion-ready \[data-reveal\]/);
+  assert.match(css, /\.is-visible/);
+  assert.match(css, /\.site-header\s*\{[\s\S]*position: fixed[\s\S]*background: var\(--burgundy-deep\)/);
   assert.match(css, /animation: none !important/);
   assert.doesNotMatch(css, /[;{]\s*(?:height|min-height|max-height)\s*:/i);
 });

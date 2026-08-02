@@ -65,12 +65,12 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
 
       <section class="section section--visit" id="visit" aria-labelledby="visit-title">
         <div class="shell section__inner">
-          <div class="section-heading">
+          <div class="section-heading" data-reveal>
             <p class="section-heading__index">Visite-nos</p>
             <h2 id="visit-title">Planeie a sua visita</h2>
           </div>
 
-          <dl class="info-list">
+          <dl class="info-list" data-reveal>
             <div class="info-row info-row--featured">
               <dt>Telefone</dt>
               <dd>{phoneHref ? <a href={phoneHref}>{cafe.phone}</a> : <span class="placeholder">{cafe.phone}</span>}</dd>
@@ -95,12 +95,12 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
 
       <section class="section section--gallery" aria-labelledby="gallery-title">
         <div class="shell section__inner">
-          <div class="section-heading">
+          <div class="section-heading" data-reveal>
             <p class="section-heading__index">Fotografias</p>
             <h2 id="gallery-title">Veja o espaço</h2>
           </div>
           {cafe.gallery.length === 0 ? (
-            <div class="gallery-empty" role="status">
+            <div class="gallery-empty" role="status" data-reveal>
               <div class="gallery-empty__mark" aria-hidden="true">✦</div>
               <div>
                 <h3>Fotografias em breve</h3>
@@ -130,5 +130,26 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
         {phoneHref && <a class="footer-phone" href={phoneHref}>{cafe.phone}</a>}
       </div>
     </footer>
+
+    <script>
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!reducedMotion && 'IntersectionObserver' in window) {
+        document.documentElement.classList.add('motion-ready');
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.14, rootMargin: '0px 0px -8% 0px' }
+        );
+
+        document.querySelectorAll('[data-reveal]').forEach((element) => revealObserver.observe(element));
+      }
+    </script>
   </body>
 </html>
