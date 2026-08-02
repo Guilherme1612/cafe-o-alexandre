@@ -13,13 +13,13 @@ Requirements for the initial single-page release. Every requirement must preserv
 - [ ] **VIS-02**: Visitor can find address, phone, WhatsApp, opening hours, and social links in a practical information section.
 - [ ] **VIS-03**: A verified phone number is exposed as a native mobile `tel:` action with an accessible label.
 - [ ] **VIS-04**: A verified WhatsApp number is exposed as a native WhatsApp action with an accessible label.
-- [ ] **VIS-05**: Unavailable address, contact, hours, social, or map values remain visibly marked placeholders and do not produce broken actions.
+- [x] **VIS-05**: Unavailable address, contact, hours, social, or map values remain visibly marked placeholders and do not produce broken actions.
 
 ### Café Story and Offerings
 
 - [ ] **ABOUT-01**: Visitor can read a short About Us section populated from café-provided description text.
 - [ ] **ABOUT-02**: Visitor can understand what the café offers from readable text without needing an image-only menu.
-- [ ] **ABOUT-03**: The page does not invent business copy, menu items, services, or claims.
+- [x] **ABOUT-03**: The page does not invent business copy, menu items, services, or claims.
 
 ### Directions and Discovery
 
@@ -97,10 +97,10 @@ Updated by roadmap creation.
 | VIS-02 | Phase 2 | Pending |
 | VIS-03 | Phase 2 | Pending |
 | VIS-04 | Phase 2 | Pending |
-| VIS-05 | Phase 1 | Pending |
+| VIS-05 | Phase 1 | Complete |
 | ABOUT-01 | Phase 2 | Pending |
 | ABOUT-02 | Phase 2 | Pending |
-| ABOUT-03 | Phase 1 | Pending |
+| ABOUT-03 | Phase 1 | Complete |
 | MAP-01 | Phase 2 | Pending |
 | MAP-02 | Phase 2 | Pending |
 | GALLERY-01 | Phase 3 | Pending |

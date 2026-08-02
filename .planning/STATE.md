@@ -1,11 +1,19 @@
 ---
-gsd_state_version: '1.0'
-status: planning
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+current_phase: 01
+current_phase_name: Static Foundation & Content Truth
+status: executing
+stopped_at: Completed 01-01-PLAN.md
+last_updated: "2026-08-02T17:12:07.696Z"
+last_activity: 2026-08-02
+last_activity_desc: Phase 01 execution started
 progress:
   total_phases: 4
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_plans: 2
+  completed_plans: 1
   percent: 0
 ---
 
@@ -16,20 +24,21 @@ progress:
 See: .planning/PROJECT.md (updated 2026-08-02)
 
 **Core value:** A visitor can quickly find accurate café information and call, message, or get directions from a mobile phone.
-**Current focus:** Phase 1 — Static Foundation & Content Truth
+**Current focus:** Phase 01 — Static Foundation & Content Truth
 
 ## Current Position
 
-Phase: 1 of 4 (Static Foundation & Content Truth)
-Plan: Not created yet
-Status: Ready to plan
-Last activity: 2026-08-02 — Initial four-phase roadmap created with full v1 traceability.
+Phase: 01 (Static Foundation & Content Truth) — EXECUTING
+Plan: 2 of 2
+Status: Ready to execute
+Last activity: 2026-08-02 — Phase 01 execution started
 
 Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 0
 - Average duration: —
 - Total execution time: —
@@ -44,6 +53,7 @@ Progress: [░░░░░░░░░░] 0%
 | 4. Resilience, Validation & Static Launch | 0 | — | — |
 
 **Recent Trend:** No completed plans yet.
+| Phase 01 P01 | 4min | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -53,6 +63,8 @@ Progress: [░░░░░░░░░░] 0%
 - Keep every unsupplied business fact visibly placeholder text and non-actionable until verified.
 - Default to a plain responsive image grid; defer lightbox and all ENH requirements.
 - Make a readable Google Maps link the directions path; an embed is not required for v1.
+- [Phase 01]: Pin Astro 7.1.6 with no adapter, runtime framework, or extra dependency.
+- [Phase 01]: Keep every unverified café fact as an exact bracketed string in one exported object.
 
 ### Pending Todos
 
@@ -75,6 +87,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-08-02
-Stopped at: Roadmap and initial state written; ready for phase planning.
+Last session: 2026-08-02T17:11:55.780Z
+Stopped at: Completed 01-01-PLAN.md
 Resume file: None
