@@ -15,6 +15,7 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{cafe.name}</title>
     <meta name="description" content={`${cafe.name} — ligue ${cafe.phone}`} />
+    <meta name="theme-color" content="#5a0a1b" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Saltar para o conteúdo</a>
@@ -27,6 +28,7 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
         </a>
         <div class="site-nav__links">
           <a href="#visit">Visitar</a>
+          <a href="#gallery">Fotografias</a>
           {phoneHref && <a class="site-nav__phone" href={phoneHref}>Ligar {cafe.phone}</a>}
         </div>
       </nav>
@@ -81,7 +83,7 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
             </div>
             <div class="info-row">
               <dt>Horário</dt>
-              <dd>{cafe.hours}</dd>
+              <dd data-hours={cafe.hours}><span>{cafe.hours}</span></dd>
             </div>
             <div class="info-row">
               <dt>Direções</dt>
@@ -93,7 +95,7 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
         </div>
       </section>
 
-      <section class="section section--gallery" aria-labelledby="gallery-title">
+      <section class="section section--gallery" id="gallery" aria-labelledby="gallery-title">
         <div class="shell section__inner">
           <div class="section-heading" data-reveal>
             <p class="section-heading__index">Fotografias</p>
@@ -132,6 +134,24 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
     </footer>
 
     <script>
+      const hoursRow = document.querySelector('[data-hours]');
+      if (hoursRow) {
+        const match = (hoursRow.dataset.hours || '').match(/(\d{1,2}):(\d{2})\s*[–-]\s*(\d{1,2}):(\d{2})/);
+        if (match) {
+          const now = new Date();
+          const nowMins = now.getHours() * 60 + now.getMinutes();
+          const openMins = parseInt(match[1], 10) * 60 + parseInt(match[2], 10);
+          const closeMins = parseInt(match[3], 10) * 60 + parseInt(match[4], 10);
+          const isOpen = nowMins >= openMins && nowMins < closeMins;
+          const label = isOpen ? 'Aberto agora' : 'Fechado agora';
+          const pill = document.createElement('span');
+          pill.className = `hours-status ${isOpen ? 'hours-status--open' : 'hours-status--closed'}`;
+          pill.setAttribute('aria-label', label);
+          pill.innerHTML = `<span class="hours-status__dot" aria-hidden="true"></span>${label}`;
+          hoursRow.appendChild(pill);
+        }
+      }
+
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       if (!reducedMotion && 'IntersectionObserver' in window) {
