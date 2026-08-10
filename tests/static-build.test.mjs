@@ -129,7 +129,7 @@ test('generated page includes the global visual contract', () => {
   assert.match(css, /@keyframes rise-in/);
   assert.match(css, /\.motion-ready \[data-reveal\]/);
   assert.match(css, /\.is-visible/);
-  assert.match(css, /\.site-header\s*\{[\s\S]*position: fixed[\s\S]*background: var\(--ink-deep\)/);
+  assert.match(css, /\.site-header\s*\{[\s\S]*position: fixed[\s\S]*background: var\(--ink\)/);
   assert.match(css, /\.hero\s*\{[\s\S]*background: var\(--burgundy-deep\)/);
   assert.match(css, /animation: none !important/);
   assert.doesNotMatch(css, /[;{]\s*(?:height|min-height|max-height)\s*:/i);
