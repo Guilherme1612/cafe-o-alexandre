@@ -5,9 +5,9 @@ milestone_name: milestone
 current_phase: 0
 status: Awaiting next milestone
 stopped_at: Completed 04-01-PLAN.md
-last_updated: "2026-08-02T18:39:30.447Z"
-last_activity: 2026-08-02
-last_activity_desc: Milestone v1.0 completed and archived
+last_updated: "2026-08-10T12:00:00.000Z"
+last_activity: 2026-08-10
+last_activity_desc: Post-milestone design refresh (hours status now live at view time); no new milestone opened
 progress:
   total_phases: 4
   completed_phases: 4
@@ -31,7 +31,7 @@ See: .planning/PROJECT.md (updated 2026-08-02)
 Phase: Milestone v1.0 complete
 Plan: —
 Status: Awaiting next milestone
-Last activity: 2026-08-02 — Milestone v1.0 completed and archived
+Last activity: 2026-08-10 — Post-milestone design refresh; milestone v1.0 remains archived
 
 ## Performance Metrics
 
