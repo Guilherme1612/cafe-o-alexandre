@@ -67,7 +67,7 @@
   --shadow-rim: 0 0 0 1px var(--line);
   --shadow-lift: 0 1px 0 0 rgb(0 0 0 / 22%), 0 18px 40px -28px rgb(0 0 0 / 64%);
   --shadow-soft: 0 1px 0 0 rgb(0 0 0 / 18%), 0 10px 30px -22px rgb(0 0 0 / 48%);
-  --shadow-gold: 0 0 0 1px var(--line-gold), 0 18px 48px -28px rgb(90 10 27 / 64%);
+  --shadow-gold: 0 0 0 1px var(--line-gold), 0 18px 48px -28px rgb(0 0 0 / 72%);
 }
 
 * {
@@ -286,7 +286,7 @@ a:active {
   position: relative;
   min-block-size: min(780px, 100dvh);
   padding-block: 132px var(--space-7);
-  background: var(--burgundy-deep);
+  background: var(--ink-deep);
   isolation: isolate;
 }
 
