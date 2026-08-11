@@ -64,11 +64,74 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
             </p>
           </div>
 
-          <figure class="hero-art" data-parallax>
-            <img class="hero-art__image" src="/images/cafe-o-alexandre.jpg" alt="Imagem promocional do Café o Alexandre com uma chávena de café" width="1600" height="893" fetchpriority="high" decoding="async" />
-          </figure>
+          <div class="hero-art-wrap" aria-hidden="true">
+            <div class="hero-art__steam" aria-hidden="true"><span></span><span></span><span></span></div>
+            <figure class="hero-art">
+              <img class="hero-art__image" src="/images/cafe-o-alexandre.jpg" alt="Imagem promocional do Café o Alexandre com uma chávena de café" width="1600" height="893" fetchpriority="high" decoding="async" />
+            </figure>
+            <div class="hero-art__badge" aria-hidden="true">
+              <small>Horário</small>
+              <strong>{cafe.hours}</strong>
+            </div>
+          </div>
+        </div>
+        <div class="hero__cue" aria-hidden="true">
+          <span class="hero__cue-track"><span class="hero__cue-dot"></span></span>
         </div>
       </section>
+
+      <div class="welcome-strip" aria-labelledby="how-title">
+        <div class="shell welcome-strip__inner">
+          <header class="welcome-strip__head" data-reveal>
+            <p class="section-heading__index">Como visitar</p>
+            <h3 id="how-title" class="welcome-strip__title">Em três passos simples</h3>
+          </header>
+          <ol class="welcome-steps">
+            <li data-reveal style="--i: 0">
+              {phoneHref ? (
+                <a class="welcome-step" href={phoneHref}>
+                  <span class="welcome-step__num" aria-hidden="true">01</span>
+                  <span class="welcome-step__label">Ligue</span>
+                  <span class="welcome-step__fact">{cafe.phone}</span>
+                  <span class="welcome-step__note">Fale connosco.</span>
+                </a>
+              ) : (
+                <span class="welcome-step">
+                  <span class="welcome-step__num" aria-hidden="true">01</span>
+                  <span class="welcome-step__label">Ligue</span>
+                  <span class="welcome-step__fact">Telefone em breve</span>
+                  <span class="welcome-step__note">Fale connosco.</span>
+                </span>
+              )}
+            </li>
+            <li data-reveal style="--i: 1">
+              {mapHref ? (
+                <a class="welcome-step" href={mapHref} target="_blank" rel="noreferrer">
+                  <span class="welcome-step__num" aria-hidden="true">02</span>
+                  <span class="welcome-step__label">Visite-nos</span>
+                  <span class="welcome-step__fact">Av. Principal 51, Milharado</span>
+                  <span class="welcome-step__note">Em Milharado.</span>
+                </a>
+              ) : (
+                <span class="welcome-step">
+                  <span class="welcome-step__num" aria-hidden="true">02</span>
+                  <span class="welcome-step__label">Visite-nos</span>
+                  <span class="welcome-step__fact">Morada em breve</span>
+                  <span class="welcome-step__note">Em Milharado.</span>
+                </span>
+              )}
+            </li>
+            <li data-reveal style="--i: 2">
+              <a class="welcome-step" href="#visit">
+                <span class="welcome-step__num" aria-hidden="true">03</span>
+                <span class="welcome-step__label">Desfrute</span>
+                <span class="welcome-step__fact">{cafe.hours}</span>
+                <span class="welcome-step__note">Planeie a sua visita.</span>
+              </a>
+            </li>
+          </ol>
+        </div>
+      </div>
 
       <section class="section section--visit" id="visit" aria-labelledby="visit-title">
         <div class="shell section__inner">
@@ -78,19 +141,19 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
           </div>
 
           <dl class="info-list">
-            <div class="info-row info-row--featured" data-reveal style="--i: 0">
+            <div class="info-row info-row--featured info-row--phone" data-reveal style="--i: 0">
               <dt>Telefone</dt>
               <dd>{phoneHref ? <a href={phoneHref}>{cafe.phone}</a> : <span class="placeholder">{cafe.phone}</span>}</dd>
             </div>
-            <div class="info-row" data-reveal style="--i: 1">
+            <div class="info-row info-row--address" data-reveal style="--i: 1">
               <dt>Morada</dt>
               <dd>{cafe.address}</dd>
             </div>
-            <div class="info-row" data-reveal style="--i: 2">
+            <div class="info-row info-row--hours" data-reveal style="--i: 2">
               <dt>Horário</dt>
               <dd data-hours={cafe.hours}><span>{cafe.hours}</span></dd>
             </div>
-            <div class="info-row" data-reveal style="--i: 3">
+            <div class="info-row info-row--directions" data-reveal style="--i: 3">
               <dt>Direções</dt>
               <dd>
                 {mapHref ? <a href={mapHref} target="_blank" rel="noreferrer">Abrir no Google Maps</a> : <span class="placeholder">{cafe.map}</span>}
@@ -148,6 +211,10 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
       </div>
     </footer>
 
+    {phoneHref && (
+      <a class="mobile-callbar" href={phoneHref}>Ligar {cafe.phone}</a>
+    )}
+
     <script>
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -185,23 +252,6 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
 
         document.querySelectorAll('[data-reveal]').forEach((element) => revealObserver.observe(element));
 
-        const heroArt = document.querySelector('[data-parallax]');
-        if (heroArt && window.matchMedia('(min-width: 700px)').matches) {
-          let ticking = false;
-          const update = () => {
-            const shift = Math.min(window.scrollY, window.innerHeight) * 0.14;
-            heroArt.style.transform = `translate3d(0, ${shift.toFixed(1)}px, 0)`;
-            ticking = false;
-          };
-          const onScroll = () => {
-            if (!ticking) {
-              ticking = true;
-              requestAnimationFrame(update);
-            }
-          };
-          window.addEventListener('scroll', onScroll, { passive: true });
-          update();
-        }
       }
     </script>
   </body>
