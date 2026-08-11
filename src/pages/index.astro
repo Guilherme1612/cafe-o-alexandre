@@ -16,6 +16,11 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
     <title>{cafe.name}</title>
     <meta name="description" content={`${cafe.name} · ligue ${cafe.phone}`} />
     <meta name="theme-color" content="#5a0a1b" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_PT" />
+    <meta property="og:title" content="Café o Alexandre" />
+    <meta property="og:description" content="Café o Alexandre · Av. Principal 51, 2665-305 Milharado · 07:00–20:00" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Saltar para o conteúdo</a>
@@ -125,10 +130,20 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
 
     <footer class="site-footer">
       <div class="shell site-footer__inner">
-        <div>
+        <div class="site-footer__brand">
           <p class="site-footer__eyebrow">Café o Alexandre</p>
           <p class="site-footer__note">Morada e horário confirmados.</p>
         </div>
+        <dl class="site-footer__facts">
+          <div class="site-footer__fact">
+            <dt>Morada</dt>
+            <dd>{cafe.address}</dd>
+          </div>
+          <div class="site-footer__fact">
+            <dt>Horário</dt>
+            <dd>{cafe.hours}</dd>
+          </div>
+        </dl>
         {phoneHref && <a class="footer-phone" href={phoneHref}>{cafe.phone}</a>}
       </div>
     </footer>
