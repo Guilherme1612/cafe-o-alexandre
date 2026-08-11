@@ -1,10 +1,11 @@
 ---
 import { cafe } from '../data/cafe';
+import CallMenu from '../components/CallMenu.astro';
 import '../styles/global.css';
 
 const isVerified = (value: string) => value.length > 0 && !value.startsWith('[');
-const phoneDigits = cafe.phone.replace(/\D/g, '');
-const phoneHref = isVerified(cafe.phone) && phoneDigits ? `tel:${phoneDigits}` : undefined;
+const phoneFooterDigits = cafe.phoneFooter.replace(/\D/g, '');
+const phoneFooterHref = isVerified(cafe.phoneFooter) && phoneFooterDigits ? `tel:${phoneFooterDigits}` : undefined;
 const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map : undefined;
 ---
 
@@ -34,7 +35,7 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
         <div class="site-nav__links">
           <a href="#visit">Visitar</a>
           <a href="#gallery">Fotografias</a>
-          {phoneHref && <a class="site-nav__phone" href={phoneHref}>Ligar {cafe.phone}</a>}
+          <CallMenu variant="nav" />
         </div>
       </nav>
     </header>
@@ -47,11 +48,7 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
             <h1 id="page-title"><span>Café o</span> <em>Alexandre</em></h1>
             <p class="hero__welcome">{cafe.welcome}</p>
             <div class="hero__actions" aria-label="Contactos e direções">
-              {phoneHref ? (
-                <a class="action action--primary" href={phoneHref} style="--i: 0">Ligar {cafe.phone}</a>
-              ) : (
-                <span class="action action--unavailable" role="status" style="--i: 0">Telefone indisponível</span>
-              )}
+              <CallMenu variant="action" />
               {mapHref ? (
                 <a class="action action--secondary" href={mapHref} target="_blank" rel="noreferrer" style="--i: 1">Obter direções</a>
               ) : (
@@ -88,21 +85,7 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
           </header>
           <ol class="welcome-steps">
             <li data-reveal style="--i: 0">
-              {phoneHref ? (
-                <a class="welcome-step" href={phoneHref}>
-                  <span class="welcome-step__num" aria-hidden="true">01</span>
-                  <span class="welcome-step__label">Ligue</span>
-                  <span class="welcome-step__fact">{cafe.phone}</span>
-                  <span class="welcome-step__note">Fale connosco.</span>
-                </a>
-              ) : (
-                <span class="welcome-step">
-                  <span class="welcome-step__num" aria-hidden="true">01</span>
-                  <span class="welcome-step__label">Ligue</span>
-                  <span class="welcome-step__fact">Telefone em breve</span>
-                  <span class="welcome-step__note">Fale connosco.</span>
-                </span>
-              )}
+              <CallMenu variant="step" />
             </li>
             <li data-reveal style="--i: 1">
               {mapHref ? (
@@ -143,7 +126,17 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
           <dl class="info-list">
             <div class="info-row info-row--featured info-row--phone" data-reveal style="--i: 0">
               <dt>Telefone</dt>
-              <dd>{phoneHref ? <a href={phoneHref}>{cafe.phone}</a> : <span class="placeholder">{cafe.phone}</span>}</dd>
+              <dd class="info-row__phones">
+                {cafe.contacts.map((contact) => {
+                  const digits = contact.phone.replace(/\D/g, '');
+                  return (
+                    <a class="info-row__phone-link" href={`tel:${digits}`}>
+                      <span class="info-row__phone-name">{contact.name}</span>
+                      <span>{contact.phone}</span>
+                    </a>
+                  );
+                })}
+              </dd>
             </div>
             <div class="info-row info-row--address" data-reveal style="--i: 1">
               <dt>Morada</dt>
@@ -207,13 +200,11 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
             <dd>{cafe.hours}</dd>
           </div>
         </dl>
-        {phoneHref && <a class="footer-phone" href={phoneHref}>{cafe.phone}</a>}
+        {phoneFooterHref && <a class="footer-phone" href={phoneFooterHref}>{cafe.phoneFooter}</a>}
       </div>
     </footer>
 
-    {phoneHref && (
-      <a class="mobile-callbar" href={phoneHref}>Ligar {cafe.phone}</a>
-    )}
+    <CallMenu variant="callbar" />
 
     <script>
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -253,6 +244,57 @@ const mapHref = isVerified(cafe.map) && cafe.map.startsWith('http') ? cafe.map :
         document.querySelectorAll('[data-reveal]').forEach((element) => revealObserver.observe(element));
 
       }
+    </script>
+
+    <script type="module">
+      const callMenus = Array.from(document.querySelectorAll('.call-menu'));
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const CLOSE_MS = reduceMotion ? 0 : 170;
+      let openedAt = 0;
+
+      function closeMenu(menu) {
+        if (!menu.open || menu.classList.contains('call-menu--closing')) return;
+        menu.classList.add('call-menu--closing');
+        setTimeout(() => {
+          menu.open = false;
+          menu.classList.remove('call-menu--closing');
+        }, CLOSE_MS);
+      }
+
+      function closeAllMenus() {
+        callMenus.forEach(closeMenu);
+      }
+
+      callMenus.forEach((menu) => {
+        const summary = menu.querySelector('summary');
+        summary.addEventListener('click', (event) => {
+          event.preventDefault();
+          if (menu.open) {
+            closeMenu(menu);
+          } else {
+            closeAllMenus();
+            menu.open = true;
+            openedAt = performance.now();
+          }
+        });
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeAllMenus();
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!event.target.closest('.call-menu')) closeAllMenus();
+      });
+
+      let scrolled = false;
+      window.addEventListener('scroll', () => {
+        if (scrolled) return;
+        scrolled = true;
+        requestAnimationFrame(() => {
+          if (performance.now() - openedAt > 250) closeAllMenus();
+          scrolled = false;
+        });
+      }, { passive: true });
     </script>
   </body>
 </html>

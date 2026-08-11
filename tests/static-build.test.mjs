@@ -29,7 +29,12 @@ test('generated page keeps the semantic shell and Portuguese copy', () => {
   assert.match(html, /class="wordmark__image"/);
   assert.match(html, /Bem-vindo ao Café o Alexandre\./);
   assert.match(html, /Visite-nos/);
-  assert.match(html, /Ligar 927 605 689/);
+  assert.match(html, /Ligar/);
+  assert.match(html, /<details class="call-menu call-menu--nav"/);
+  assert.match(html, /<details class="call-menu call-menu--action"/);
+  assert.match(html, /<details class="call-menu call-menu--callbar[^"]*"/);
+  assert.match(html, /Alexandre[\s\S]*927 605 689/);
+  assert.match(html, /Carla[\s\S]*927 605 631/);
   assert.match(html, /Obter direções/);
   assert.match(html, /Av\. Principal 51, 2665-305 Milharado, Portugal/);
   assert.match(html, /07:00–20:00/);
@@ -68,6 +73,7 @@ test('generated page keeps the semantic shell and Portuguese copy', () => {
 });
 
 test('unresolved content does not become an actionable destination', () => {
+  assert.match(html, /href="tel:927605631"/i);
   assert.match(html, /href="tel:927605689"/i);
   assert.match(html, /href="https:\/\/www\.google\.com\/maps\/dir/);
   assert.doesNotMatch(html, /(?:href|src)="[^"]*(?:whatsapp|facebook|instagram|twitter|x\.com|mailto:)/i);
@@ -82,7 +88,12 @@ test('static artifact keeps a small progressive motion enhancement', () => {
   assert.doesNotMatch(html, /<(?:iframe|source)\b[^>]*(?:src|srcset)=['"]https?:\/\//i);
   assert.doesNotMatch(html, /<link\b[^>]*(?:href|src)=['"]https?:\/\//i);
   assert.match(html, /<link rel="stylesheet" href="\/_astro\/[^\"]+\.css">/);
-  assert.match(html, /Ligar 927 605 689/);
+  assert.match(html, /Ligar/);
+  assert.match(html, /<details class="call-menu call-menu--nav"/);
+  assert.match(html, /<details class="call-menu call-menu--action"/);
+  assert.match(html, /<details class="call-menu call-menu--callbar[^"]*"/);
+  assert.match(html, /Alexandre[\s\S]*927 605 689/);
+  assert.match(html, /Carla[\s\S]*927 605 631/);
   assert.match(html, /Obter direções/);
   assert.match(html, /Fotografias em breve/);
 });

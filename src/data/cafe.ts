@@ -6,11 +6,15 @@ export type GalleryImage = Readonly<{
   height: number;
 }>;
 
+export type PhoneContact = Readonly<{ name: string; phone: string }>;
+
 type CafeContent = Readonly<{
   name: string;
   welcome: string;
   address: string;
   phone: string;
+  phoneFooter: string;
+  contacts: readonly PhoneContact[];
   hours: string;
   map: string;
   images: string;
@@ -21,7 +25,12 @@ export const cafe = {
   name: 'Café o Alexandre',
   welcome: 'Bem-vindo ao Café o Alexandre.',
   address: 'Av. Principal 51, 2665-305 Milharado, Portugal',
-  phone: '927 605 689',
+  phone: '927 605 631',
+  phoneFooter: '927 605 689',
+  contacts: [
+    { name: 'Alexandre', phone: '927 605 689' },
+    { name: 'Carla', phone: '927 605 631' }
+  ] as const satisfies readonly PhoneContact[],
   hours: '07:00–20:00',
   map: 'https://www.google.com/maps/dir/?api=1&destination=Av.%20Principal%2051%2C%202665-305%20Milharado%2C%20Portugal',
   images: '[IMAGENS DO CAFÉ]',

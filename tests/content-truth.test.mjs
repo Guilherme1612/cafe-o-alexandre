@@ -34,7 +34,10 @@ test('all unknown café fields stay explicit, non-empty placeholders', () => {
 test('verified identity and visit details remain source-backed', () => {
   assert.match(source, /name:\s*['"]Café o Alexandre['"]/);
   assert.match(source, /welcome:\s*['"]Bem-vindo ao Café o Alexandre\.['"]/);
-  assert.match(source, /phone:\s*['"]927 605 689['"]/);
+  assert.match(source, /phone:\s*['"]927 605 631['"]/);
+  assert.match(source, /phoneFooter:\s*['"]927 605 689['"]/);
+  assert.match(source, /\{ name: 'Alexandre', phone: '927 605 689' \}/);
+  assert.match(source, /\{ name: 'Carla', phone: '927 605 631' \}/);
   assert.match(source, /address:\s*['"]Av\. Principal 51, 2665-305 Milharado, Portugal['"]/);
   assert.match(source, /hours:\s*['"]07:00–20:00['"]/);
   assert.match(source, /map:\s*['"]https:\/\/www\.google\.com\/maps\/dir/);

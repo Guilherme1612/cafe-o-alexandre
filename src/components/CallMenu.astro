@@ -1,0 +1,33 @@
+---
+import { cafe } from '../data/cafe';
+
+interface Props {
+  variant?: 'action' | 'nav' | 'step' | 'callbar';
+}
+const { variant = 'action' } = Astro.props;
+const isStep = variant === 'step';
+const label = isStep ? 'Ligue' : 'Ligar';
+const extraClass = isStep ? ' welcome-step' : variant === 'callbar' ? ' mobile-callbar' : '';
+---
+
+<details class={`call-menu call-menu--${variant}${extraClass}`}>
+  <summary class="call-menu__trigger">
+    {isStep && <span class="welcome-step__num" aria-hidden="true">01</span>}
+    <span class="call-menu__label">{label}</span>
+    {isStep && <span class="welcome-step__note">Fale connosco.</span>}
+  </summary>
+  <div class="call-menu__pop" role="group" aria-label="Escolha o número para ligar">
+    <p class="call-menu__hint">Ligue para</p>
+    {
+      cafe.contacts.map((contact) => {
+        const digits = contact.phone.replace(/\D/g, '');
+        return (
+          <a class="call-menu__item" href={`tel:${digits}`}>
+            <span class="call-menu__name">{contact.name}</span>
+            <span class="call-menu__phone">{contact.phone}</span>
+          </a>
+        );
+      })
+    }
+  </div>
+</details>
